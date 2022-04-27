@@ -1,0 +1,28 @@
+.nav-item > a {
+    display: inline-block;
+    position: relative;
+    color: var(--dark);
+    text-decoration: none;
+  }
+  .nav-item > a::after {
+    content: '';
+    position: absolute;
+    width: 20%;
+    transform: scaleX(0);
+    border-radius: 15px;
+    height: 0.15em;
+    bottom: 0;
+    left: 50%;
+    background: currentcolor;
+    transform-origin: center center;
+    transition: transform 0.25s ease-out;
+  }
+  .nav-item > a:hover{
+      color: var(--medium)!important;
+    }
+    .nav-item > a:hover::after {
+    transform: scaleX(1);
+    transform-origin: center center;
+    color: var(--dark)!important;
+  }
+  

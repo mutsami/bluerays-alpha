@@ -1,0 +1,9 @@
+<div routerLinkActive="router-link-active"  *ngFor="let item of recent" class="listing listing-list">
+  <div class="listing-thumbnail">
+    <a [routerLink]="['/listings/details', item.id]"><img [src]="item.gallery[0]?.url" onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';"  alt="listing"></a>
+  </div>
+  <div class="listing-body">
+    <h6 class="listing-title"> <a  [routerLink]="['/listings/details', item.id]" [title]="item.name">{{item.name}}</a> </h6>
+    <span class="listing-price">{{item.price | currency:'KES '}}</span>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="submit()"  >
+    <div class="form-group">
+      <input formControlName="amount" type="text" class="form-control" placeholder="Total Amount" name="total" value="">
+      <div *ngIf="f['amount'].touched && f['amount'].invalid" style="color: red;">
+        <div *ngIf="f['amount'].errors && f['amount'].errors['required']" > <small>Amount is required.</small> </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input formControlName="deposit" type="text" class="form-control" placeholder="Down Payment" name="down-p" value="">
+      <div *ngIf="f['deposit'].touched && f['deposit'].invalid" style="color: red;">
+        <div *ngIf="f['deposit'].errors && f['deposit'].errors['required']" > <small>Deposit is required.</small> </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input formControlName="interest" type="text" class="form-control" placeholder="Interest Rate" name="interest" value="">
+      <div *ngIf="f['interest'].touched && f['interest'].invalid" style="color: red;">
+        <div *ngIf="f['interest'].errors && f['interest'].errors['required']" > <small>Interest is required.</small> </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <input formControlName="term" type="text" class="form-control" placeholder="Monthly Loan Term" name="loan-term" value="">
+      <div *ngIf="f['term'].touched && f['term'].invalid" style="color: red;">
+        <div *ngIf="f['term'].errors && f['term'].errors['required']" > <small>Term is required.</small> </div>
+      </div>
+    </div> 
+    <button  [disabled]="form.invalid"   type="submit" class="btn-custom btn-block" name="button">Calculate</button>
+  </form>
+
+  <h5 style="margin-top: 6%;" *ngIf="mortgate"> {{ mortgate | currency:'Kes. ' }} / month </h5>

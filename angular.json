@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/bluerays-alpha",
+            "outputPath": "dist/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,17 +27,46 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/plugins/bootstrap.min.css",
+              "src/assets/css/plugins/animate.min.css",
+              "src/assets/css/plugins/magnific-popup.css",
+              "src/assets/css/plugins/slick.css",
+              "src/assets/css/plugins/slick-theme.css",
+              "src/assets/css/plugins/select2.min.css",
+              "src/assets/fonts/flaticon/flaticon.css",
+              "src/assets/fonts/font-awesome/css/all.min.css",
+              "src/assets/css/style.css",
+              "src/assets/css/primary-skin.css",
+              "src/assets/css/docs.css"
+              
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/plugins/jquery-3.4.1.min.js",
+              "src/assets/js/plugins/popper.min.js",
+              "src/assets/js/plugins/waypoint.js",
+              "src/assets/js/plugins/bootstrap.min.js",
+              "src/assets/js/plugins/jquery.magnific-popup.min.js",
+              "src/assets/js/plugins/jquery.slimScroll.min.js",
+              "src/assets/js/plugins/imagesloaded.min.js",
+              "src/assets/js/plugins/jquery.steps.min.js",
+              "src/assets/js/plugins/jquery.countdown.min.js",
+              "src/assets/js/plugins/isotope.pkgd.min.js",
+              "src/assets/js/plugins/slick.min.js",
+              "src/assets/js/plugins/select2.min.js",
+              "src/assets/js/main.js",
+              "src/assets/js/plugins/dropzone.min.js",
+              "src/assets/js/plugins/mapbox-gl.min.js",
+              "src/assets/js/plugins/mapbox-gl.min.js"
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "4mb"
                 },
                 {
                   "type": "anyComponentStyle",

@@ -1,0 +1,286 @@
+  <!-- Subheader Start -->
+  <div class="subheader bg-cover bg-center dark-overlay" style="background-image: url('https://via.placeholder.com/1920x1280')">
+    <div class="container">
+      <div class="subheader-inner">
+        <h1 class="text-white">Beach House listings</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#"> <i class="fas fa-home"></i> </a></li>
+            <li class="breadcrumb-item"><a href="#">Listings</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Listings List</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- Subheader End -->
+
+    <!-- Listings Start -->
+    <div class="section">
+      <div class="container">
+  
+        <div class="row">
+          <ais-instantsearch [config]="config" >
+  
+            <ais-search-box placeholder="Enter an address, neighbourhood, city or any property details" ></ais-search-box>
+              
+            <ais-infinite-hits
+             
+            showPreviousLabel="Show previous results"
+            showMoreLabel="Show more results"
+            
+            >
+            <ais-configure
+            [searchParameters]="{ hitsPerPage: 10}"
+            ></ais-configure>
+                
+                <ng-template let-hits="hits" let-results="results" let-refinePrevious="showPrevious" let-refineNext="showNext">
+                  
+                  <div style="margin-top: 4%;" >
+  
+                    <div style="margin-bottom: 2%;">
+                      <ais-stats></ais-stats>
+                    </div>
+  
+                    <div *ngIf="hits.length === 0" >
+                      No results have been found for {{ results?.query }}.
+                    </div>
+  
+                      <div class="row">
+                        <!-- Sidebar Start -->
+                        <div class="col-lg-4">
+                          <div class="sidebar sidebar-left">
+                            <div class="sidebar-widget">
+                              <div class="acr-collapse-trigger acr-custom-chevron-wrapper">
+                                <h4 style="margin-bottom: 0%;">Filter Listings</h4> 
+                              </div> 
+                              <div class="acr-collapsable">
+                                <div class="acr-filter-form">
+                                  <form >
+                                    <div class="row" style="margin-top: 4%;">
+                                      <div class="col-6">
+                                        <h6 style="margin-bottom: 0%;">Bedrooms</h6>
+                                        <hr style="margin: 0%; height: 1px; width: 100%;">
+  
+                                          <ais-numeric-menu
+                                        
+                                          attribute="beds"
+                                          [items]="[
+                                          { label: 'All' },
+                                          { start: 1, end: 1, label: '1' },
+                                          { start: 2, end: 2, label: '2' },
+                                          { start: 3, end: 3, label: '3' },
+                                          { start: 4, end: 4, label: '4' }, 
+                                          { start: 5, label: '5+' }
+                                          
+                                        ]"
+                                          [autoHideContainer]="true"
+                                        ></ais-numeric-menu>
+                                      </div>
+                                      <div class="col-6">
+                                        <h6 style="margin-bottom: 0%;">Bathrooms</h6>
+                                        <hr style="margin: 0%; height: 1px; width: 100%;">
+  
+                                        <ais-numeric-menu
+                                      
+                                          attribute="bathrooms"
+                                          [items]="[
+                                          { label: 'All' },
+                                          { start: 1, end: 1, label: '1' },
+                                          { start: 2, end: 2, label: '2' },
+                                          { start: 3, end: 3, label: '3' },
+                                          { start: 4, end: 4, label: '4' }, 
+                                          { start: 5, label: '5+' }
+                                          
+                                          ]"
+                                          [autoHideContainer]="true"
+                                        ></ais-numeric-menu>
+                                      </div>
+                                    </div>
+  
+                                    <div class="row" style="margin-top: 4%;">
+                                      <div class="col-6">
+                                        <h6 style="margin-bottom: 0%;">Price Range</h6>
+                                        <hr style="margin: 0%; height: 1px; width: 100%;">
+    
+                                        <ais-numeric-menu
+                                        
+                                            attribute="price"
+                                            [items]="[
+                                            { label: 'All' },
+                                            { end: 1000000, label: 'less than 1m' },
+                                            { start: 1000000, end: 5000000, label: 'Kes. 1m - Kes. 5m' },
+                                            { start: 5000000, end: 20000000, label: 'Kes.  5m - Kes. 20m' },
+                                            { start: 20000000, end: 40000000, label: 'Kes. 20m - Kes. 40m' },
+                                            { start: 40000000, end: 60000000, label: 'Kes. 40m - Kes. 60m' },
+                                            { start: 60000000, end:80000000, label: 'Kes. 60m - Kes. 80m' },
+                                            { start: 80000000, end: 100000000, label: 'Kes. 80m - Kes. 100m' },
+                                            { start: 100000000, label: 'more than Kes. 100' }
+                                            
+                                          ]"
+                                            [autoHideContainer]="true"
+                                        ></ais-numeric-menu>
+                                      </div>
+                                      
+                                      <div class="col-6">
+                                        <h6 style="margin-bottom: 0%;">Neighbourhood</h6>
+                                        <hr style="margin: 0%; height: 1px; width: 100%;">
+                                        <ais-menu attribute="neighbourhood"
+                                        [limit]="5"
+                                        [showMore]="true"
+                                        [showMoreLimit]="10"
+                                        showMoreLabel="Show more"
+                                        showLessLabel="Show less"  
+                                        [autoHideContainer]="true"
+                                        ></ais-menu> 
+                                      </div>
+                                    </div>   
+                                  </form>
+                                </div>
+                              </div>
+  
+                            </div>
+  
+                            <div class="sidebar-widget">
+                              <div class="acr-collapse-trigger acr-custom-chevron-wrapper">
+                                <h5>Recent Listing</h5>
+                                <div class="acr-custom-chevron">
+                                  <span></span>
+                                  <span></span>
+                                </div>
+                              </div>
+                              <div class="acr-collapsable">
+                                <app-recent-listings-sm></app-recent-listings-sm>
+                              </div>
+  
+                            </div>
+  
+                            <div class="sidebar-widget">
+                              <div class="acr-collapse-trigger acr-custom-chevron-wrapper">
+                                <h5>Mortgage Calculator</h5> 
+                              </div>
+                              <div class="acr-collapsable">
+                                <app-mortgage></app-mortgage>
+                              </div>
+  
+                            </div>
+  
+                          </div>
+                        </div>
+                        <!-- Sidebar End -->
+  
+                        <!-- Posts Start -->
+                        <div class="col-lg-8">
+                          
+                          <!-- Controls Start -->
+                          <div class="acr-global-listing-controls">
+                            <div class="acr-listing-active-filters">
+                              <ais-current-refinements></ais-current-refinements> 
+                            </div>
+                            <div class="acr-toggle-views">
+                              <a [routerLink]="['/beach-house/grid']" data-toggle="tooltip" title="Grid"><i class="fas fa-th-large"></i></a>
+                              <a [routerLink]="['/beach-house/list']" class="active" data-toggle="tooltip" title="List"><i class="fas fa-th-list"></i></a>
+                              <a [routerLink]="['/beach-house/map']" data-toggle="tooltip" title="Map"><i class="fas fa-map"></i></a>
+                            </div>
+                          </div>
+                          <!-- Controls End -->
+  
+                          <!-- Show previous button template -->
+                          <button *ngIf="hits.length > 8" class="btn-sm btn-custom" (click)="refinePrevious($event)">
+                            Show previous
+                          </button> 
+  
+                          <div  style="margin-top: 4%;">
+  
+                            <!-- Listing Start -->
+                            <div *ngFor="let hit of hits">
+                              <div class="listing listing-list">
+                                <div class="row">
+                                  <div class="col-sm-6">
+                                    <div class="listing-thumbnail">
+                                      <a [routerLink]="['/listings/details', hit.objectID]"><img [src]="hit.gallery[0]?.url" onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';"  style="object-fit: cover; height: 300px;" alt="listing"></a>
+                                      <div class="listing-badges">
+                                        <span class="listing-badge featured"> <i class="fas fa-star"></i> </span>
+                                        <span class="listing-badge pending"> Pending</span>
+                                      </div>
+                                      <div class="listing-controls">
+                                        <a href="#" class="favorite"><i class="far fa-heart"></i></a>
+                                        <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a>
+                                      </div>
+                                    </div>
+                                  </div> 
+                                  <div class="col-sm-6">
+                                    <div class="listing-body">
+                                      <div class="listing-author">
+                                        <img [src]="hit.uploader_photoURL" onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';"  alt="author">
+                                        <div class="listing-author-body">
+                                          <p>
+                                            <a href="#"><ais-highlight attribute="uploader_displayName" [hit]="hit"></ais-highlight></a> </p>
+                                          <span class="listing-date">{{hit.uploaded._seconds * 1000 | date:'medium'}}</span>
+                                        </div>
+                                        &nbsp;
+                                        <div class="dropdown options-dropdown">
+                                          <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+                                          <div class="dropdown-menu dropdown-menu-right">
+                                            <ul>
+                                              <li> <a  href="{{'tel:' + hit.phone }}" > <i class="fas fa-phone"></i> Call Agent</a> </li>
+                                              <li> <a href="{{'mailto:' +  hit.email }}"> <i class="fas fa-envelope"></i> Send Message</a> </li>
+                                              <li> <a href="listing-details-v1.html"> <i class="fas fa-bookmark"></i> Book Tour</a> </li>
+                                            </ul>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <h5 class="listing-title"> <a [routerLink]="['/listings/details', hit.objectID]" title="hit.name"><ais-highlight attribute="name" [hit]="hit"></ais-highlight></a> </h5>
+                                      <span class="listing-price">{{hit.price | currency:'KES '}}</span>
+                                      <p class="listing-text ellipsis3"><ais-highlight attribute="description" [hit]="hit"></ais-highlight></p>
+                                      <div class="acr-listing-icons">
+                                        <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
+                                          <i class="flaticon-bedroom"></i>
+                                          <span class="acr-listing-icon-value">{{hit.beds}}</span>
+                                        </div>
+                                        <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
+                                          <i class="flaticon-bathroom"></i>
+                                          <span class="acr-listing-icon-value">{{hit.bathrooms}}</span>
+                                        </div>
+                                        <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
+                                          <i class="flaticon-ruler"></i>
+                                          <span class="acr-listing-icon-value">{{hit.size | number }} Sqft</span>
+                                        </div>
+                                      </div>
+                                      <div class="listing-gallery-wrapper">
+                                        <a [routerLink]="['/listings/details', hit.objectID]" class="btn-custom btn-sm secondary">View Details</a>
+                                        <a href="#" data-toggle="tooltip" title="Gallery" class="listing-gallery"> <i class="fas fa-camera"></i> </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div> 
+                            </div>
+                            <!-- Listing End -->
+  
+                          </div>
+  
+                          <!-- Show more button template -->
+                          <button class="btn-sm btn-custom" (click)="refineNext($event)">
+                            Show more
+                          </button> 
+  
+                        </div>
+                        <!-- Posts End -->
+                      </div>
+                      
+                     
+                  </div>
+                  
+  
+                </ng-template>
+              </ais-infinite-hits>
+        
+          </ais-instantsearch>
+  
+  
+        </div>
+  
+      </div>
+    </div>
+    <!-- Listings End --> 

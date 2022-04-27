@@ -1,0 +1,118 @@
+
+    <div *ngIf="auth.userData as user">
+
+        <div class="subheader user-subheader" style="margin-top:6%!important;padding: 0%;"  >
+            <div class="container">
+              <div class="media">
+                <img  src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
+                alt="{{user.displayName}}"  onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?text=User';">
+                <div class="media-body">
+                    <div class="row">
+                      <div class="col-sm-4">
+                        
+                        <h3 class="text-black">{{(user.displayName) ? user.displayName : 'User'}}</h3>
+                        <!-- <p class="text-black" style="letter-spacing:1px; font-size: 10px;">{{user.uid}}</p> -->
+                         
+                        <span class="text-black" style="letter-spacing:1px">{{user.email}}</span>
+                        <p class="text-black" style="letter-spacing:1px;"><span class="badge badge-custom" style="font-size: 10px; background-color: rgb(0, 255, 213);color: rgb(37, 158, 138);">Email Verified</span></p>
+                      
+                  
+                      </div>
+                      <div class="col-sm-2">
+                        <span class="text-gray" style="letter-spacing:1px;font-size: 10px;">
+                          Created on<strong> {{user.metadata.createdAt | date:'medium' }}</strong>
+                        </span> 
+                      </div>
+                      <div class="col-sm-2"> 
+                        <span class="text-black" style="letter-spacing:1px;font-size: 10px;">
+                          Last Sign In on<strong> {{user.metadata.lastSignInTime | date:'medium' }}</strong>
+                        </span>
+                      </div>
+                      <div class="col-sm-2"> 
+                        <a [routerLink]="['/listings/submit']" routerLinkActive="router-link-active"  class="btn-custom secondary mr-0">Submit Listing <i class="fas mr-0 fa-plus"></i> </a>
+                      </div>
+                      <div class="col-sm-2"></div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          
+  <div class="section">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4">
+          <div class="sidebar sticky-sidebar user-nav sidebar-left">
+            <ul>
+              <li> <a [routerLink]="['/login']" > Edit Profile</a> </li>
+              <li> <a class="active" [routerLink]="['/dashboard/my-listings']">My Listings</a> </li>
+              <li> <a [routerLink]="['/dashboard/saved-listings']">Saved Listings</a> </li>
+              <li> <a class="logout" (click)="auth.SignOut()"><i class="flaticon-shut-down-button"></i> Logout</a> </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+
+          <div *ngFor="let item of listings"  class="listing listing-list ">
+            <div class="row">
+              <div class="col-sm-5">
+                <div class="listing-thumbnail">
+                  <a  [routerLink]="['/listings/details/'+ item.id]">
+                    <img [src]="item.gallery[0].url" onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';" style="height: 300px;" alt="listing">
+                  </a>
+                  <div class="listing-badges">
+                    <span class="listing-badge featured"> <i class="fas fa-star"></i> </span>
+                    <span class="listing-badge sale"> On Sale</span>
+                    <!-- <span class="listing-badge rent"> Rental</span> -->
+  
+                  </div>
+                  <div class="listing-controls">
+                    <a (click)="saveListing(item.id)" class="favorite"><i class="far fa-heart"></i></a>
+                    <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a>
+                    <a href="#" class="edit"><i class="fas fa-edit"></i></a>
+    
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-1"></div>
+              <div class="col-sm-6">
+                <div class="listing-body">
+                  <app-uploader [item]="item" ></app-uploader>
+                  <h5 class="listing-title"> <a [routerLink]="['/listings/details',item.id]" title="{{item.name}}">{{item.name}}</a> </h5>
+                  <span class="listing-price">{{item.price  | currency:'KES '}}</span>
+                  <p class="listing-text ellipsis2">{{item.description}}</p>
+                  <div class="acr-listing-icons">
+                    <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
+                      <i class="flaticon-bedroom"></i>
+                      <span class="acr-listing-icon-value">{{item.beds}}</span>
+                    </div>
+                    <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
+                      <i class="flaticon-bathroom"></i>
+                      <span class="acr-listing-icon-value">{{item.bathrooms}}</span>
+                    </div>
+                    <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
+                      <i class="flaticon-ruler"></i>
+                      <span class="acr-listing-icon-value">{{item.size}} &#x33A1; </span>
+                    </div>
+                  </div>
+                  <div class="listing-gallery-wrapper">
+                    <a [routerLink]="['/listings/details',item.id]"  class="btn-custom btn-sm secondary">View Details</a>
+                    <a href="#" data-toggle="tooltip" title="Gallery" class="listing-gallery"> <i class="fas fa-camera"></i> </a>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+            
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+    </div> 

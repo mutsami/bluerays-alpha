@@ -1,0 +1,35 @@
+<div class="acr-auth-container">
+    <div class="acr-auth-content">
+
+      <div  >
+
+        <div class="auth-text">
+          <h3>Create A Bluerays Account</h3>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+        </div> 
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" class="form-control form-control-light" placeholder="Email Address" name="email" value="" #userEmail required>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control form-control-light" placeholder="Password" name="password" value="" #userPwd required>
+        </div>
+        <button type="submit" class="btn-custom secondary btn-block" (click)="authService.SignUp(userEmail.value, userPwd.value)">Register</button>
+        <div class="auth-seperator">
+          <span>OR</span>
+        </div>
+        <div class="social-login">
+          <button type="button" class="acr-social-login facebook"><i class="fab fa-facebook-f" (click)="authService.GoogleAuth()"></i> Continue with Facebook </button>
+          <button type="button" class="acr-social-login google"><i class="fab fa-google" (click)="authService.GoogleAuth()"></i> Continue with Google</button>
+        </div>
+        <p class="text-center mb-0">Already have an account? <a [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a> </p>
+
+      </div>
+    </div>
+    <div class="acr-auth-bg">
+        <div class="tile">
+
+        </div>
+    </div>
+  </div>

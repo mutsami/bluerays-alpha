@@ -1,0 +1,7 @@
+<div class="listing-author"> 
+  <img src="{{(item.uploader_photoURL) ? item.uploader_photoURL : 'assets/img/292x300.png'}}"  onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?text=User';">
+    <div class="listing-author-body"> 
+      <p> <a href="#">{{item.uploader_displayName | titlecase}}</a> </p>
+      <span class="listing-date">{{item.uploaded.toDate() | date:'medium'}}</span> 
+    </div>
+  </div> 

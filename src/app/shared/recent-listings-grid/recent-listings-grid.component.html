@@ -1,0 +1,55 @@
+<div *ngFor="let item of recent" class="listing">
+    <div class="listing-thumbnail">
+      <a [routerLink]="['/listings/details',item.id]"><img style="height: 100%;" [src]="item.gallery[0]?.url" onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';"  alt="listing"></a>
+      <div class="listing-badges">
+        <span class="listing-badge featured"> <i class="fas fa-star"></i> </span>
+        <span class="listing-badge sale"> On Sale</span>
+      </div>
+      <div class="listing-controls">
+        <a href="#" class="favorite"><i class="far fa-heart"></i></a>
+        <a href="#" class="compare"><i class="fas fa-sync-alt"></i></a>
+      </div>
+    </div>
+    <div class="listing-body">
+        <div class="listing-author">
+            <img [src]="item.uploader_photoURL" onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';"  alt="author">
+            <div class="listing-author-body">
+              <p *ngIf="item.uploader_displayName" > <a href="#">{{item.uploader_displayName}}</a> </p>
+              <p *ngIf="!item.uploader_displayName" > <a href="#">{{item.uploader_id}}</a> </p>
+
+              
+              <span class="listing-date">{{item.uploaded.toDate() | date:'medium'}}</span>
+            </div>
+            <div class="dropdown options-dropdown">
+              <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <ul>
+                  <li> <a (click)="getUploaderPhone(item.uploader_id)" > <i class="fas fa-phone"></i> Call Agent</a> </li>
+                  <li> <a (click)="getUploaderEmail(item.uploader_id)"> <i class="fas fa-envelope"></i> Send Message</a> </li>
+                  <li> <a [routerLink]="['/listings/details',item.id]"> <i class="fas fa-bookmark"></i> Book Tour</a> </li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      <h5 class="listing-title"> <a [routerLink]="['/listings/details',item.id]" title="item.name">{{item.name}}</a> </h5>
+      <span class="listing-price">{{item.price | currency:'KES '}}</span>
+      <p class="listing-text ellipsis2">{{item.description}}</p>
+      <div class="acr-listing-icons">
+        <div class="acr-listing-icon" data-toggle="tooltip" title="" data-original-title="Beds">
+          <i class="flaticon-bedroom"></i>
+          <span class="acr-listing-icon-value">{{item.beds}}</span>
+        </div>
+        <div class="acr-listing-icon" data-toggle="tooltip" title="" data-original-title="Bathrooms">
+          <i class="flaticon-bathroom"></i>
+          <span class="acr-listing-icon-value">{{item.bathrooms}}</span>
+        </div>
+        <div class="acr-listing-icon" data-toggle="tooltip" title="" data-original-title="Square Feet">
+          <i class="flaticon-ruler"></i>
+          <span class="acr-listing-icon-value">{{item.size}}</span>
+        </div>
+      </div>
+      <div class="listing-gallery-wrapper">
+        <a [routerLink]="['/listings/details',item.id]" class="btn-custom btn-sm secondary">View Details</a>
+       </div>
+    </div>
+  </div>

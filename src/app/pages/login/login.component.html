@@ -1,0 +1,227 @@
+<div *ngIf="auth.userData; then authenticated else guest">
+  <!-- template will replace this div -->
+</div>
+
+<!-- User NOT logged in -->
+<ng-template #guest>
+  <div class="acr-auth-container">
+    <div class="acr-auth-content">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <div class="auth-text">
+          <h3>Log Into Bluerays</h3>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's</p>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input formControlName="email" type="text" class="form-control form-control-light" placeholder="email" name="email" value="">
+          <div *ngIf="f['email'].touched && f['email'].invalid" style="color: red;">
+            <div *ngIf="f['email'].errors && f['email'].errors['required']" > <small>Email is required.</small> </div>
+          </div> 
+          <div *ngIf="f['email'].touched && f['email'].invalid" style="color:red;">
+            <div *ngIf="f['email'].errors && f['email'].errors['email']" > <small>Email isn't valid. Please enter a valid email.</small> </div>
+          </div> 
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input formControlName="password" type="password" class="form-control form-control-light" placeholder="Password" name="password" value="">
+          <div *ngIf="f['password'].touched && f['password'].invalid" style="color: red;">
+            <div *ngIf="f['password'].errors && f['password'].errors['required']" > <small>Password is required.</small> </div>
+          </div> 
+        </div>
+        <div class="form-group">
+          <a [routerLink]="['/forgot-password']" class="forgot-password">Forgot Password?</a>
+        </div>
+        <button [disabled]="form.invalid" type="submit" class="btn-custom secondary btn-block">Login</button>
+        <div class="auth-seperator">
+          <span>OR</span>
+        </div>
+        <div class="social-login">
+          <button type="button" class="acr-social-login facebook" (click)="auth.GoogleAuth()"><i class="fab fa-facebook-f"></i> Continue with Facebook </button>
+          <button type="button" class="acr-social-login google" (click)="auth.GoogleAuth()"><i class="fab fa-google"></i> Continue with Google</button>
+        </div>
+        <p class="text-center mb-0">Don't have an account? <a [routerLink]="['/register']">Create One</a> </p>
+
+      </form>
+    </div>
+    <div class="acr-auth-bg">
+       <div class="tile">
+
+       </div>
+    </div>
+</div> 
+</ng-template>
+
+
+<!-- User logged in -->
+<ng-template #authenticated>
+  <div *ngIf="auth.userData; then authenticated else guest">
+    <!-- template will replace this div -->
+  </div>
+  
+  <!-- User NOT logged in -->
+  <ng-template #guest>
+     <h1>go back to login</h1>
+  </ng-template>
+  
+  
+  <!-- User logged in -->
+  <ng-template #authenticated>
+    <div *ngIf="auth.userData as user">
+        <!-- Subheader Start -->
+
+  <!-- Subheader End -->
+
+  <div class="section">
+    <div class="subheader user-subheader" style="margin-top:6%!important; padding: 0%;"  >
+      <div class="container">
+        <div class="media">
+          <img  src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
+          alt="{{user.displayName}}"  onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?text=User';">
+          <div class="media-body">
+              <div class="row">
+                <div class="col-sm-6">
+                  
+                  <h3 class="text-black">{{(user.displayName) ? user.displayName : 'User'}}</h3>
+                  <!-- <p class="text-black" style="letter-spacing:1px; font-size: 10px;">{{user.uid}}</p> -->
+                   
+                  <span class="text-black" style="letter-spacing:1px">{{user.email}}</span>
+                  <p class="text-black" style="letter-spacing:1px;"><span class="badge badge-custom" style="font-size: 10px; background-color: rgb(0, 255, 213);color: rgb(37, 158, 138);">Email Verified</span></p>
+                
+                  <span class="text-gray" style="letter-spacing:1px;font-size: 10px;">
+                    Created on<strong> {{user.metadata.createdAt | date:'medium' }}</strong>
+                  </span> 
+                  <br>
+                  <span class="text-black" style="letter-spacing:1px;font-size: 10px;">
+                    Last Sign In on<strong> {{user.metadata.lastSignInTime | date:'medium' }}</strong>
+                  </span>
+                </div>
+                <div class="col-sm-6"> 
+                  
+                </div>
+              </div>
+            </div>
+          <a [routerLink]="['/listings/submit']" routerLinkActive="router-link-active"  class="btn-custom secondary mr-0">Submit Listing <i class="fas mr-0 fa-plus"></i> </a>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="padding-top: 4%;">
+      <div class="row">
+
+        <div class="col-lg-4">
+          <div class="sidebar sticky-sidebar user-nav sidebar-left">
+            <ul>
+              <li> <a class="active" [routerLink]="['/login']" > Edit Profile</a> </li>
+              <li> <a [routerLink]="['/dashboard/my-listings']">My Listings</a> </li>
+              <li> <a [routerLink]="['/dashboard/saved-listings']">Saved Listings</a> </li>
+              <li> <a class="logout" (click)="auth.SignOut()"><i class="flaticon-shut-down-button"></i> Logout</a> </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+
+          <div class="acr-welcome-message">
+            <h3>Welcome back, {{(user.displayName) ? user.displayName : 'User'}}</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+          </div>
+
+          <form  [formGroup]="userForm" (ngSubmit)="submit()" >
+            <div class="row">
+
+              <div class="col-lg-6 form-group">
+                <label>Full Name</label>
+                <input formControlName="name"  type="text"  class="form-control" placeholder="{{user.displayName}}" value="{{user.displayName}}">
+                <div *ngIf="t['name'].touched && t['name'].invalid" style="color: red;">
+                  <div *ngIf="t['name'].errors && t['name'].errors['required']" > <small>Name is required.</small> </div>
+                </div> 
+              </div>
+              <div class="col-lg-6 form-group">
+                <label>Username</label>
+                <input formControlName="username"  type="text" class="form-control" placeholder="{{user.displayName}}" value="{{user.displayName}}">
+                <div *ngIf="t['username'].touched && t['username'].invalid" style="color: red;">
+                  <div *ngIf="t['username'].errors && t['username'].errors['required']" > <small>Username is required.</small> </div>
+                </div> 
+              </div>
+              <div class="col-lg-6 form-group">
+                <label>Email Address</label>
+                <input  formControlName="email"  type="email" class="form-control" placeholder="{{user.email}}" value="{{user.email}}">
+                <div *ngIf="t['email'].touched && t['email'].invalid" style="color: red;">
+                  <div *ngIf="t['email'].errors && t['email'].errors['required']" > <small>Email is required.</small> </div>
+                </div> 
+                <div *ngIf="t['email'].touched && t['email'].invalid" style="color:red;">
+                  <div *ngIf="t['email'].errors && t['email'].errors['email']" > <small>Email isn't valid. Please enter a valid email.</small> </div>
+                </div> 
+              </div>
+              <div class="col-lg-6 form-group">
+                <label>Phone Number <small>Format</small> ( 254-712-345-678)</label>
+                <input  formControlName="phoneNumber"  type="text" class="form-control" placeholder="{{user.phoneNumber}}" value="{{user.phoneNumber}}">
+                <div *ngIf="t['phoneNumber'].touched && t['phoneNumber'].invalid" style="color: red;">
+                  <div *ngIf="t['phoneNumber'].errors && t['phoneNumber'].errors['required']" > <small>Phone number is required.</small> </div>
+                </div> 
+              </div>
+              <div class="col-lg-6 form-group">
+                <label>Address One</label>
+                <input  formControlName="addOne"  type="text" class="form-control" placeholder="Address" value="">
+                <div *ngIf="t['addOne'].touched && t['addOne'].invalid" style="color: red;">
+                  <div *ngIf="t['addOne'].errors && t['addOne'].errors['required']" > <small>First address is required.</small> </div>
+                </div> 
+              </div>
+              <div class="col-lg-6 form-group">
+                <label>Address Two</label>
+                <input  formControlName="addTwo"  type="text" class="form-control" placeholder="Address" value="">
+                <div *ngIf="t['addTwo'].touched && t['addTwo'].invalid" style="color: red;">
+                  <div *ngIf="t['addTwo'].errors && t['addTwo'].errors['required']" > <small>Second address is required.</small> </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12 form-group">
+                <label>About Me</label>
+                <textarea  formControlName="about"  name="about" rows="4" class="form-control" placeholder="About Me"></textarea>
+                <div *ngIf="t['about'].touched && t['about'].invalid" style="color: red;">
+                  <div *ngIf="t['about'].errors && t['about'].errors['required']" > <small>About you is required.</small> </div>
+                </div>
+              </div>
+            </div>
+            <button [disabled]="userForm.invalid"  type="submit" name="submit" class="btn-custom">Save Changes</button>
+          </form>
+          <!-- <hr>
+
+          <div class="acr-welcome-message">
+            <h3>Security</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+          </div>
+
+          <form method="post">
+            <div class="row">
+              <div class="col-lg-6 form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Password" value="">
+              </div>
+              <div class="col-lg-6 form-group">
+                <label>Repeat Password</label>
+                <input type="password" class="form-control" placeholder="Repeat Password" value="">
+              </div>
+              <div class="col-lg-12 form-group">
+                <label>Upload Your ID</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="propertyThumbnail">
+                  <label class="custom-file-label" for="propertyThumbnail">Choose file</label>
+                </div>
+              </div>
+            </div>
+            <button type="submit" name="submit" class="btn-custom">Save Changes</button>
+
+          </form> -->
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+    </div>
+  </ng-template>
+</ng-template>

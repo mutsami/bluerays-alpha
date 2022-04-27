@@ -1,0 +1,155 @@
+
+/* 8.8. Login & Register */
+.acr-auth-container{
+    position: relative;
+    display: flex;
+  }
+  .acr-auth-container > div{
+    width: 50%;
+  }
+  .acr-auth-bg-slider,
+  .acr-auth-bg-item,
+  .acr-auth-bg-slider div{
+    height: 100%;
+  }
+  .acr-auth-bg-slider .slick-dots{
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+  }
+  .acr-auth-container .slick-slide,
+  .acr-auth-container .slick-list{
+    margin: 0;
+    position: relative;
+  }
+  .acr-auth-bg-slider .slick-dots li{
+    margin-top: 0;
+    line-height: 1;
+  }
+  .acr-auth-content{
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .acr-auth-content form{
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .acr-auth-content form .btn-block{
+    margin-top: 10px;
+  }
+  .auth-seperator {
+    margin: 30px 0;
+    text-align: center;
+  }
+  .auth-seperator span{
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #848486;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .auth-seperator span::before{
+    content: '';
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background-color: rgba(0,0,0,.1);
+    height: 1px;
+    margin-right: 20px;
+  }
+  .auth-seperator span::after{
+    content: '';
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background-color: rgba(0,0,0,.1);
+    height: 1px;
+    margin-left: 20px;
+  }
+  .acr-auth-content .forgot-password{
+    display: inline-block;
+    color: #101737;
+    text-decoration: underline;
+  }
+  .acr-auth-content .auth-text p{
+    margin-bottom: 30px;
+  }
+  .acr-auth-content .auth-nav{
+    margin: 30px 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+  .acr-auth-content .auth-nav a{
+    display: inline-block;
+    padding-bottom: 30px;
+    margin-right: 30px;
+    font-weight: 600;
+    color: #101737;
+  }
+  .acr-auth-content .auth-nav a.active{
+    color: #01BBBC;
+    border-bottom: 2px solid #01BBBC;
+  }
+  .social-login{
+    margin-bottom: 30px;
+  }
+  .acr-social-login{
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    line-height: 24px;
+    border: 0;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 8px;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+  }
+  .acr-social-login i{
+    margin-right: 5px;
+  }
+  
+  .acr-auth-bg-slider .acr-auth-quote{
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    height: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 40px;
+    box-shadow: 0 2px 9px 0px rgba(34,12,43, 0.1);
+  }
+  .acr-auth-bg-slider .acr-auth-quote h6{
+    margin-bottom: 5px;
+  }
+  .acr-auth-bg-slider .acr-auth-quote p{
+    margin-bottom: 0;
+  }
+
+
+  .tile{ 
+    height: 100%;
+    background-image: url('./../../../assets/img/2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+  }
+
+  .sidebar ul li a {
+    display: block;
+    color: #4a5779;
+    padding: 20px;
+}

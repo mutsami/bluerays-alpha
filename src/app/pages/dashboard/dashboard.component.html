@@ -1,0 +1,24 @@
+<div *ngIf="authService.userData; then authenticated else guest">
+  <!-- template will replace this div -->
+</div>
+
+<!-- User NOT logged in -->
+<ng-template #guest>
+   <h1>go back to login</h1>
+</ng-template>
+
+
+<!-- User logged in -->
+<ng-template #authenticated>
+<div *ngIf="authService.userData as user">
+  <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
+                alt="{{user.displayName}}"  onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?text=User';">
+              <div class="media-body">
+                <h1>Hello, <strong>{{(user.displayName) ? user.displayName : 'User'}}</strong></h1>
+                <p>User ID: <strong>{{user.uid}}</strong></p>
+                <p>Email: <strong>{{user.email}}</strong></p>
+                <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
+              </div>
+  <button (click)="authService.SignOut()">Logout</button>
+</div>
+</ng-template>
