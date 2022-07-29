@@ -58,44 +58,23 @@
                                 <form >
                                   
                                   <div class="row" style="margin-top: 4%;">
-                                    <div class="col-6">
-                                      <h6 style="margin-bottom: 0%;">Bedrooms</h6>
+                                    <div class="col-12">
+                                      <h6 style="margin-bottom: 0%;">County</h6>
                                       <hr style="margin: 0%; height: 1px; width: 100%;">
 
-                                        <ais-numeric-menu
-                                      
-                                        attribute="beds"
-                                        [items]="[
-                                        { label: 'All' },
-                                        { start: 1, end: 1, label: '1' },
-                                        { start: 2, end: 2, label: '2' },
-                                        { start: 3, end: 3, label: '3' },
-                                        { start: 4, end: 4, label: '4' }, 
-                                        { start: 5, label: '5+' }
-                                        
-                                      ]"
-                                        [autoHideContainer]="true"
-                                      ></ais-numeric-menu>
-                                    </div>
-                                    <div class="col-6">
-                                      <h6 style="margin-bottom: 0%;">Bathrooms</h6>
-                                      <hr style="margin: 0%; height: 1px; width: 100%;">
+                                      <ais-refinement-list
+                                      attribute="county"
 
-                                      <ais-numeric-menu
-                                    
-                                        attribute="bathrooms"
-                                        [items]="[
-                                        { label: 'All' },
-                                        { start: 1, end: 1, label: '1' },
-                                        { start: 2, end: 2, label: '2' },
-                                        { start: 3, end: 3, label: '3' },
-                                        { start: 4, end: 4, label: '4' }, 
-                                        { start: 5, label: '5+' }
-                                        
-                                        ]"
-                                        [autoHideContainer]="true"
-                                      ></ais-numeric-menu>
-                                    </div>
+                                      operator="and"
+                                      [limit]="7"
+                                      [showMoreLimit]="10"
+                                      showMoreLabel="show more"
+                                      showLessLabel="show less"
+                                      [searchable]="false"
+                                      searchPlaceholder="County" 
+                                      [autoHideContainer]="true" 
+                                      ></ais-refinement-list>
+                                  </div> 
                                   </div>
 
                                   <div style="margin-top: 4%;">

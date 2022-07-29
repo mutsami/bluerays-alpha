@@ -1,0 +1,139 @@
+ 
+<div *ngIf="auth.userData as user">
+  
+  <div class="container" style="padding-top: 4%">
+    
+    <h1 class="title">  Blog.</h1>
+  </div> 
+  <div class="container-fluid" style="margin-left: 2%;margin-right: 2%;">
+    <div class="row"> 
+      <div class="col-lg-3">
+        <div class="sidebar sticky-sidebar user-nav sidebar-left">
+          <ul>
+            <li> <a class="active" [routerLink]="['/login']" > Edit Profile</a> </li>
+            <li> <a [routerLink]="['/dashboard/my-listings']">My Listings</a> </li>
+            <li> <a [routerLink]="['/dashboard/blog']">Blog</a> </li>
+            <li> <a [routerLink]="['/dashboard/saved-listings']">Saved Listings</a> </li>
+            <li> <a class="logout" (click)="auth.SignOut()"><i class="flaticon-shut-down-button"></i> Logout</a> </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="col-lg-9">
+        <div class="subheader user-subheader" style="margin-top:0%!important;padding: 0%;"  >
+          <div class="container">
+              <div class=" "> 
+                  <div class="row" style="margin-top: 1%;"> 
+                      <div class="col-sm-11" > 
+                          <ul class="nav nav-tabs" id="myTab" role="tablist">
+                              <li class="nav-item">
+                                <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">Dashboard</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" id="listings-tab" data-toggle="tab" href="#listings" role="tab" aria-controls="listings" aria-selected="false">New post</a>
+                              </li>
+                          </ul>
+           
+                      
+                          <!-- Tabs content -->
+                          <div class="tab-content" id="myTabContent">
+                              <div
+                              class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab"
+                              >
+                              
+                                  <div class="row">
+                                      <div *ngFor="let blog of blogs" class="col-sm-3 d-flex align-items-stretch" style="margin-top: 2%;">
+                                          
+                                          <div class="card ">
+                                              <img [src]="blog.cover_image | sanitizeHtml" style="height: 150px; background-size: cover;  " class="card-img-top" alt="Fissure in Sandstone"/>
+                                              <div class="card-body">
+                                                  <h5 class="card-title ellipsis2 subtitle" style="color: var(--dark);">{{blog.title}}</h5>
+                                                  <hr>
+                                                  <p class="card-text ellipsis2 flex-grow-1"><small>{{blog.description}}</small></p>
+                                                  <p><small style="font-size: 10px;">{{blog.uploaded.toDate() | date : 'medium' }} <br> {{blog.uploaded.toDate() | date:'medium' }}</small></p>
+                                                  <div style="position: absolute;
+                                                  right:    50%;
+                                                  bottom:   5px; ">
+                                                      <span><a style="cursor: pointer;text-decoration: underline; color: rgb(16, 150, 184);" [routerLink]= "['/dashboard/edit-blog', blog.id]"><small>Edit</small></a></span> &nbsp;
+                                                      <span><a style="cursor: pointer;text-decoration: underline; color: var(--medium);" (click)="auth.deleteBlog(blog.id)"><small>Delete</small></a></span>
+                                                  </div>
+                                                  
+                                                  </div>
+                                          </div>
+                                      </div> 
+                                  </div>
+          
+                              </div>
+                              <div  class="tab-pane fade" id="listings" role="tabpanel" aria-labelledby="listings-tab">
+                                              
+                                  <form [formGroup]="form" (ngSubmit)="submit()">
+                              
+                                      <div class="form-group">
+                                          <div class="form-outline mb-4">
+                                              <input type="text" id="cover_image" class="form-control form-control-sm" formControlName="cover_image" />
+                                              <label class="form-label" for="cover_image">Cover image url/link</label>
+                                              <div *ngIf="f['cover_image'].touched && f['cover_image'].invalid" style="color: var(--medium);">
+                                                  <div *ngIf="f['cover_image'].errors && f['cover_image'].errors['required']" > <small>** Cover image url is required.</small> </div>
+                                                  <div *ngIf="f['cover_image'].errors && f['cover_image'].errors['minlength']"><small>** Cover image url be above 3 characters.</small></div>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-sm-6">
+                                                  <div class="form-outline mb-4">
+                                                      <input type="text" id="title" class="form-control form-control-sm" formControlName="title" />
+                                                      <label class="form-label" for="title">Blog title</label>
+                                                      <div *ngIf="f['title'].touched && f['title'].invalid" style="color: var(--medium);">
+                                                          <div *ngIf="f['title'].errors && f['title'].errors['required']" > <small>** Title is required.</small> </div>
+                                                          <div *ngIf="f['title'].errors && f['title'].errors['minlength']"><small>** Title should be above 3 characters.</small></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="col-sm-6">
+                                                  <div class="form-outline mb-4">
+                                                      <input type="text" id="category" class="form-control form-control-sm" formControlName="category" />
+                                                      <label class="form-label" for="category">Category</label>
+                                                      <div *ngIf="f['category'].touched && f['category'].invalid" style="color: var(--medium);">
+                                                          <div *ngIf="f['category'].errors && f['category'].errors['required']" > <small>** Category is required.</small> </div>
+                                                          <div *ngIf="f['category'].errors && f['category'].errors['minlength']"><small>** Category should be above 3 characters.</small></div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div> 
+                                      </div>
+                                      <div class="form-group">
+          
+                                          <div class="form-outline mb-4">
+                                              <textarea class="form-control form-control-sm" id="description" formControlName="description" rows="4"></textarea>
+                                              <label class="form-label" for="description">Short description</label>
+                                              <div *ngIf="f['description'].touched && f['description'].invalid" style="color: var(--medium);">
+                                                  <div *ngIf="f['description'].errors && f['description'].errors['required']"><small>**A short description is required.</small></div>
+                                              </div>
+                                          </div>  
+                                          
+                                      </div>
+          
+                                      <angular-editor formControlName="htmlContent" [config]="config"></angular-editor>
+          
+                                      <button class="btn btn-custom1 shadow-0" style="margin-top: 2%;" [disabled]="form.invalid" type="submit">Submit</button>
+                                  </form>
+                              </div>
+                              <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+                              Tab 3 content
+                              </div>
+                          </div>
+                          <!-- Tabs content -->
+          
+                      </div>
+                      <div class="col-sm-1">
+                          
+                      </div>
+                  </div> 
+          
+          
+              </div> 
+          </div>
+      </div>
+      </div>
+    </div> 
+  </div> 
+</div>

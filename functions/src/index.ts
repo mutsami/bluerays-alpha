@@ -68,7 +68,7 @@ exports.updateUserIndex = functions.firestore.document('users/{usersId}')
 exports.deleteFromUserIndex = functions.firestore.document('users/{usersId}')
 
     .onDelete((snapshot: { id: any; }) => 
-    usersIndex.deleteObject(snapshot.id)
+        usersIndex.deleteObject(snapshot.id)
     );
 
 
@@ -76,11 +76,11 @@ exports.deleteFromUserIndex = functions.firestore.document('users/{usersId}')
 
 
 
-/// Commercial Index
+/// Land Sale Index
 
-const commercialIndex = client.initIndex('commercial');
+const land_sale_Index = client.initIndex('Land_sale');
 
-exports.addToCommercialIndex = functions.firestore.document('listings/{listingsId}')
+exports.addToLand_for_sale_Index = functions.firestore.document('listings/{listingsId}')
 
     .onCreate((snapshot: { data: () => any; id: any; }) => {
 
@@ -89,15 +89,15 @@ exports.addToCommercialIndex = functions.firestore.document('listings/{listingsI
 
         const type = data.type;
  
-        if (type == 'commercial') {
-            return commercialIndex.saveObject({ ...data, objectID });
+        if (type == 'land_sale') {
+            return land_sale_Index.saveObject({ ...data, objectID });
         } else {
             return null
         }       
 
     });
 
-exports.updatecommercialIndex = functions.firestore.document('listings/{listingsId}')
+exports.updateLand_sale_Index = functions.firestore.document('listings/{listingsId}')
 
     .onUpdate((change:any) => {
         const newData = change.after.data();
@@ -109,38 +109,39 @@ exports.updatecommercialIndex = functions.firestore.document('listings/{listings
         const oldtype = previousValue.type;
         const newType = newData.type;
 
-        if ( oldtype == 'commercial' ) {
+        if ( oldtype == 'land_sale' ) {
 
-            if (newType == 'commercial') {
-                commercialIndex.saveObject({ ...newData, objectID });
-            }else if(newType != 'commercial'){
-                return commercialIndex.deleteObject(objectID);
+            if (newType == 'land_sale') {
+                land_sale_Index.saveObject({ ...newData, objectID });
+            }else if(newType != 'land_sale'){
+                return land_sale_Index.deleteObject(objectID);
             } 
-        }else if(oldtype != 'commercial' ){
-            if (newType == 'commercial') {
-                commercialIndex.saveObject({ ...newData, objectID });
+        }else if(oldtype != 'land_sale' ){
+            if (newType == 'land_sale') {
+                land_sale_Index.saveObject({ ...newData, objectID });
             }
         } else {
             return null
         }   
     });
 
-exports.deleteFromCommercialIndex = functions.firestore.document('listings/{listingsId}')
+exports.deleteFromLand_sale_Index = functions.firestore.document('listings/{listingsId}')
 
 .onDelete((snapshot: { id: any; }) => 
-commercialIndex.deleteObject(snapshot.id)
+land_sale_Index.deleteObject(snapshot.id)
 );
  
 
-/// Commercial Index
+///Land Sale Index
 
 
 
-/// Residential Index
 
-const residentialIndex = client.initIndex('residential');
+///Land Lease Index
 
-exports.addToResidentialIndex = functions.firestore.document('listings/{listingsId}')
+const land_lease_Index = client.initIndex('Land_lease');
+
+exports.addToLand_for_lease_Index = functions.firestore.document('listings/{listingsId}')
 
     .onCreate((snapshot: { data: () => any; id: any; }) => {
 
@@ -149,15 +150,15 @@ exports.addToResidentialIndex = functions.firestore.document('listings/{listings
 
         const type = data.type;
  
-        if (type == 'residential') {
-            return residentialIndex.saveObject({ ...data, objectID });
+        if (type == 'land_lease') {
+            return land_lease_Index.saveObject({ ...data, objectID });
         } else {
             return null
         }       
 
     });
 
-exports.updateResidentialIndex = functions.firestore.document('listings/{listingsId}')
+exports.updateLand_lease_Index = functions.firestore.document('listings/{listingsId}')
 
     .onUpdate((change:any) => {
         const newData = change.after.data();
@@ -169,40 +170,38 @@ exports.updateResidentialIndex = functions.firestore.document('listings/{listing
         const oldtype = previousValue.type;
         const newType = newData.type;
 
-        if ( oldtype == 'residential' ) {
+        if ( oldtype == 'land_lease' ) {
 
-            if (newType == 'residential') {
-                residentialIndex.saveObject({ ...newData, objectID });
-            }else if(newType != 'residential'){
-                return residentialIndex.deleteObject(objectID);
+            if (newType == 'land_lease') {
+                land_sale_Index.saveObject({ ...newData, objectID });
+            }else if(newType != 'land_lease'){
+                return land_sale_Index.deleteObject(objectID);
             } 
-        }else if(oldtype != 'residential' ){
-            if (newType == 'residential') {
-                residentialIndex.saveObject({ ...newData, objectID });
+        }else if(oldtype != 'land_lease' ){
+            if (newType == 'land_lease') {
+                land_sale_Index.saveObject({ ...newData, objectID });
             }
         } else {
             return null
         }   
     });
 
-exports.deleteFromResidentialIndex = functions.firestore.document('listings/{listingsId}')
+exports.deleteFromLand_lease_Index = functions.firestore.document('listings/{listingsId}')
 
 .onDelete((snapshot: { id: any; }) => 
-residentialIndex.deleteObject(snapshot.id)
+    land_lease_Index.deleteObject(snapshot.id)
 );
  
 
-/// Residential Index
+///Land Lease Index
 
 
 
+/// Home Sale Index
 
+const home_sale_Index = client.initIndex('Home_sale');
 
-/// Villas Index
-
-const villasIndex = client.initIndex('villas');
-
-exports.addToVillasIndex = functions.firestore.document('listings/{listingsId}')
+exports.addToHome_for_sale_Index = functions.firestore.document('listings/{listingsId}')
 
     .onCreate((snapshot: { data: () => any; id: any; }) => {
 
@@ -211,15 +210,15 @@ exports.addToVillasIndex = functions.firestore.document('listings/{listingsId}')
 
         const type = data.type;
  
-        if (type == 'villas') {
-            return villasIndex.saveObject({ ...data, objectID });
+        if (type == 'home_sale') {
+            return home_sale_Index.saveObject({ ...data, objectID });
         } else {
             return null
         }       
 
     });
 
-exports.updateVillasIndex = functions.firestore.document('listings/{listingsId}')
+exports.updateHome_for_sale_Index = functions.firestore.document('listings/{listingsId}')
 
     .onUpdate((change:any) => {
         const newData = change.after.data();
@@ -231,39 +230,37 @@ exports.updateVillasIndex = functions.firestore.document('listings/{listingsId}'
         const oldtype = previousValue.type;
         const newType = newData.type;
 
-        if ( oldtype == 'villas' ) {
+        if ( oldtype == 'home_sale' ) {
 
-            if (newType == 'villas') {
-                villasIndex.saveObject({ ...newData, objectID });
-            }else if(newType != 'villas'){
-                return villasIndex.deleteObject(objectID);
+            if (newType == 'home_sale') {
+                home_sale_Index.saveObject({ ...newData, objectID });
+            }else if(newType != 'home_sale'){
+                return home_sale_Index.deleteObject(objectID);
             } 
-        }else if(oldtype != 'villas' ){
-            if (newType == 'villas') {
-                villasIndex.saveObject({ ...newData, objectID });
+        }else if(oldtype != 'home_sale' ){
+            if (newType == 'home_sale') {
+                home_sale_Index.saveObject({ ...newData, objectID });
             }
         } else {
             return null
         }   
     });
 
-exports.deleteFromVillasIndex = functions.firestore.document('listings/{listingsId}')
+exports.deleteFromHome_sale_Index = functions.firestore.document('listings/{listingsId}')
 
 .onDelete((snapshot: { id: any; }) => 
-villasIndex.deleteObject(snapshot.id)
+    home_sale_Index.deleteObject(snapshot.id)
 );
  
 
-/// Villas Index
+///Home Sale Index
 
 
+/// Home Rent Index
 
+const home_rent_Index = client.initIndex('Home_rent');
 
-/// Apartments Index
-
-const apartmentsIndex = client.initIndex('apartments');
-
-exports.addToApartmentsIndex = functions.firestore.document('listings/{listingsId}')
+exports.addToHome_for_rent_Index = functions.firestore.document('listings/{listingsId}')
 
     .onCreate((snapshot: { data: () => any; id: any; }) => {
 
@@ -272,15 +269,15 @@ exports.addToApartmentsIndex = functions.firestore.document('listings/{listingsI
 
         const type = data.type;
  
-        if (type == 'apartments') {
-            return apartmentsIndex.saveObject({ ...data, objectID });
+        if (type == 'home_rent') {
+            return home_rent_Index.saveObject({ ...data, objectID });
         } else {
             return null
         }       
 
     });
 
-exports.updateApartmentsIndex = functions.firestore.document('listings/{listingsId}')
+exports.updateHome_for_rent_Index = functions.firestore.document('listings/{listingsId}')
 
     .onUpdate((change:any) => {
         const newData = change.after.data();
@@ -292,38 +289,38 @@ exports.updateApartmentsIndex = functions.firestore.document('listings/{listings
         const oldtype = previousValue.type;
         const newType = newData.type;
 
-        if ( oldtype == 'apartments' ) {
+        if ( oldtype == 'home_rent' ) {
 
-            if (newType == 'apartments') {
-                apartmentsIndex.saveObject({ ...newData, objectID });
-            }else if(newType != 'apartments'){
-                return apartmentsIndex.deleteObject(objectID);
+            if (newType == 'home_rent') {
+                home_rent_Index.saveObject({ ...newData, objectID });
+            }else if(newType != 'home_rent'){
+                return home_rent_Index.deleteObject(objectID);
             } 
-        }else if(oldtype != 'apartments' ){
-            if (newType == 'apartments') {
-                apartmentsIndex.saveObject({ ...newData, objectID });
+        }else if(oldtype != 'home_rent' ){
+            if (newType == 'home_rent') {
+                home_rent_Index.saveObject({ ...newData, objectID });
             }
         } else {
             return null
         }   
     });
 
-exports.deleteFromApartmentsIndex = functions.firestore.document('listings/{listingsId}')
+exports.deleteFromHome_rent_Index = functions.firestore.document('listings/{listingsId}')
 
 .onDelete((snapshot: { id: any; }) => 
-apartmentsIndex.deleteObject(snapshot.id)
+    home_rent_Index.deleteObject(snapshot.id)
 );
  
 
-/// Apartments Index
+///Home Rent Index
 
 
 
-/// Beach house Index
+///Staycations Index
 
-const beachHouseIndex = client.initIndex('beach-house');
+const staycations_Index = client.initIndex('Staycations');
 
-exports.addToBeachHouseIndex = functions.firestore.document('listings/{listingsId}')
+exports.addToLand_for_lease_Index = functions.firestore.document('listings/{listingsId}')
 
     .onCreate((snapshot: { data: () => any; id: any; }) => {
 
@@ -332,15 +329,15 @@ exports.addToBeachHouseIndex = functions.firestore.document('listings/{listingsI
 
         const type = data.type;
  
-        if (type == 'beach-house') {
-            return beachHouseIndex.saveObject({ ...data, objectID });
+        if (type == 'staycations') {
+            return staycations_Index.saveObject({ ...data, objectID });
         } else {
             return null
         }       
 
     });
 
-exports.updateBeachHouseIndex = functions.firestore.document('listings/{listingsId}')
+exports.updateStaycations_Index = functions.firestore.document('listings/{listingsId}')
 
     .onUpdate((change:any) => {
         const newData = change.after.data();
@@ -352,39 +349,39 @@ exports.updateBeachHouseIndex = functions.firestore.document('listings/{listings
         const oldtype = previousValue.type;
         const newType = newData.type;
 
-        if ( oldtype == 'beach-house' ) {
+        if ( oldtype == 'staycations' ) {
 
-            if (newType == 'beach-house') {
-                beachHouseIndex.saveObject({ ...newData, objectID });
-            }else if(newType != 'beach-house'){
-                return beachHouseIndex.deleteObject(objectID);
+            if (newType == 'staycations') {
+                staycations_Index.saveObject({ ...newData, objectID });
+            }else if(newType != 'staycations'){
+                return staycations_Index.deleteObject(objectID);
             } 
-        }else if(oldtype != 'beach-house' ){
-            if (newType == 'beach-house') {
-                beachHouseIndex.saveObject({ ...newData, objectID });
+        }else if(oldtype != 'staycations' ){
+            if (newType == 'staycations') {
+                staycations_Index.saveObject({ ...newData, objectID });
             }
         } else {
             return null
         }   
     });
 
-exports.deleteFromBeachHouseIndex = functions.firestore.document('listings/{listingsId}')
+exports.deleteFromStaycations_Index = functions.firestore.document('listings/{listingsId}')
 
 .onDelete((snapshot: { id: any; }) => 
-    beachHouseIndex.deleteObject(snapshot.id)
+    staycations_Index.deleteObject(snapshot.id)
 );
  
 
-/// Beach house Index
+///Staycations Index
 
 
 
 
-/// Duplex Index
+///Event Spaces Index
 
-const duplexIndex = client.initIndex('duplex');
+const event_spaces_Index = client.initIndex('Event_spaces');
 
-exports.addToDuplexIndex = functions.firestore.document('listings/{listingsId}')
+exports.addToEvent_spaces_Index = functions.firestore.document('listings/{listingsId}')
 
     .onCreate((snapshot: { data: () => any; id: any; }) => {
 
@@ -393,15 +390,15 @@ exports.addToDuplexIndex = functions.firestore.document('listings/{listingsId}')
 
         const type = data.type;
  
-        if (type == 'duplex') {
-            return duplexIndex.saveObject({ ...data, objectID });
+        if (type == 'event_spaces') {
+            return event_spaces_Index.saveObject({ ...data, objectID });
         } else {
             return null
         }       
 
     });
 
-exports.updateDuplexIndex = functions.firestore.document('listings/{listingsId}')
+exports.updateEvent_spaces_Index = functions.firestore.document('listings/{listingsId}')
 
     .onUpdate((change:any) => {
         const newData = change.after.data();
@@ -413,27 +410,86 @@ exports.updateDuplexIndex = functions.firestore.document('listings/{listingsId}'
         const oldtype = previousValue.type;
         const newType = newData.type;
 
-        if ( oldtype == 'duplex' ) {
+        if ( oldtype == 'event_spaces' ) {
 
-            if (newType == 'duplex') {
-                duplexIndex.saveObject({ ...newData, objectID });
-            }else if(newType != 'duplex'){
-                return duplexIndex.deleteObject(objectID);
+            if (newType == 'event_spaces') {
+                event_spaces_Index.saveObject({ ...newData, objectID });
+            }else if(newType != 'event_spaces'){
+                return event_spaces_Index.deleteObject(objectID);
             } 
-        }else if(oldtype != 'duplex' ){
-            if (newType == 'duplex') {
-                duplexIndex.saveObject({ ...newData, objectID });
+        }else if(oldtype != 'event_spaces' ){
+            if (newType == 'event_spaces') {
+                event_spaces_Index.saveObject({ ...newData, objectID });
             }
         } else {
             return null
         }   
     });
 
-exports.deleteFromDuplexIndex = functions.firestore.document('listings/{listingsId}')
+exports.deleteFromEvent_spaces_Index = functions.firestore.document('listings/{listingsId}')
 
 .onDelete((snapshot: { id: any; }) => 
-    duplexIndex.deleteObject(snapshot.id)
+    event_spaces_Index.deleteObject(snapshot.id)
 );
  
 
-/// Duplex Index
+///Event Spaces Index
+
+
+///Office Space Index
+
+const office_space_Index = client.initIndex('office_space');
+
+exports.addToOffice_Space_Index = functions.firestore.document('listings/{listingsId}')
+
+    .onCreate((snapshot: { data: () => any; id: any; }) => {
+
+        const data = snapshot.data();
+        const objectID = snapshot.id;
+
+        const type = data.type;
+ 
+        if (type == 'office_space') {
+            return office_space_Index.saveObject({ ...data, objectID });
+        } else {
+            return null
+        }       
+
+    });
+
+exports.updateOffice_Space_Index = functions.firestore.document('listings/{listingsId}')
+
+    .onUpdate((change:any) => {
+        const newData = change.after.data();
+        const objectID = change.after.id;
+
+        // ...or the previous value before this update
+        const previousValue = change.before.data();
+
+        const oldtype = previousValue.type;
+        const newType = newData.type;
+
+        if ( oldtype == 'office_space' ) {
+
+            if (newType == 'office_space') {
+                office_space_Index.saveObject({ ...newData, objectID });
+            }else if(newType != 'office_space'){
+                return office_space_Index.deleteObject(objectID);
+            } 
+        }else if(oldtype != 'office_space' ){
+            if (newType == 'office_space') {
+                office_space_Index.saveObject({ ...newData, objectID });
+            }
+        } else {
+            return null
+        }   
+    });
+
+exports.deleteFromOffice_Space_Index = functions.firestore.document('listings/{listingsId}')
+
+.onDelete((snapshot: { id: any; }) => 
+    office_space_Index.deleteObject(snapshot.id)
+);
+ 
+
+///Office Space Index

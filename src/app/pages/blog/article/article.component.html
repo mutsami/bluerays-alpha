@@ -1,0 +1,41 @@
+ 
+<div class="container" style="padding-top: 5%;padding-bottom: 5%;">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10"> 
+            <span class="badge bg-custom " style="text-align: center;" ><h3 class="subtitle" style="margin:0%;padding:4%">{{blog.category}}</h3></span>
+            
+            <h1 class="title" style="font-size: 50px; margin-top: 4%;">{{blog.title | titlecase }}</h1>
+
+            <p class="subtitle margin-top ellipsis3">{{blog.description}}</p>
+            <p >
+                <small class="subtitle " style="font-weight:bold">{{blog.uploaded.toDate() | date:'medium'}}</small>
+                <br>
+                <small class="subtitle" style="color: var(--medium);font-weight:bold" >{{blog.uploaded.toDate() | timeago }}</small>
+            </p>
+        </div> 
+        <div class="col-sm-1"></div>
+    </div>
+</div>
+
+<div class="container-fluid bannerBlog"
+
+        [style.background]="'url(' + blog.cover_image + ')'" 
+        [style.background-size]="'contain'"
+        [style.background-position]="'top'"
+        [style.background-repeat]="'no-repeat'"
+        [style.height]="'100vh'"  
+        [style.width]="'100%'"
+      >
+</div>
+<div class="container" style="margin-top: 8%;margin-bottom: 8%;">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10"> 
+
+            <div [innerHTML]="blog.htmlContent" class="innhtml"></div>
+
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div> 

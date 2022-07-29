@@ -177,9 +177,9 @@
                             <ais-current-refinements></ais-current-refinements> 
                           </div>
                           <div class="acr-toggle-views">
-                            <a [routerLink]="['/commercial/grid']" class="active" data-toggle="tooltip" title="Grid"><i class="fas fa-th-large"></i></a>
-                            <a [routerLink]="['/commercial/list']" data-toggle="tooltip" title="List"><i class="fas fa-th-list"></i></a>
-                            <a [routerLink]="['/commercial/map']" data-toggle="tooltip" title="Map"><i class="fas fa-map"></i></a>
+                            <a [routerLink]="['/home-rent/grid']" class="active" data-toggle="tooltip" title="Grid"><i class="fas fa-th-large"></i></a>
+                            <a [routerLink]="['/home-rent/list']" data-toggle="tooltip" title="List"><i class="fas fa-th-list"></i></a>
+                            <a [routerLink]="['/home-rent/map']" data-toggle="tooltip" title="Map"><i class="fas fa-map"></i></a>
                           </div>
                         </div>
                         <!-- Controls End -->
@@ -229,17 +229,10 @@
                                 <span class="listing-price">{{hit.price | currency:'KES '}}</span>
                                 <p class="listing-text ellipsis3"><ais-highlight attribute="description" [hit]="hit"></ais-highlight></p>
                                 <div class="acr-listing-icons">
-                                  <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
-                                    <i class="flaticon-bedroom"></i>
-                                    <span class="acr-listing-icon-value">{{hit.beds}}</span>
-                                  </div>
-                                  <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
-                                    <i class="flaticon-bathroom"></i>
-                                    <span class="acr-listing-icon-value">{{hit.bathrooms}}</span>
-                                  </div>
+                                  
                                   <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
                                     <i class="flaticon-ruler"></i>
-                                    <span class="acr-listing-icon-value">{{hit.size | number }} Sqft</span>
+                                    <span class="acr-listing-icon-value">{{hit.size | number }} Acres</span>
                                   </div>
                                 </div>
                                 <div class="listing-gallery-wrapper">

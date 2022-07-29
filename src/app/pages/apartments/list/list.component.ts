@@ -8,7 +8,7 @@ import algoliasearch from 'algoliasearch/lite';
 })
 export class ListComponent implements OnInit {
   config = {
-    indexName: 'apartments',
+    indexName: 'staycations',
     searchClient: algoliasearch('MS0SDRBX0K', 'd7d2fa3a66a52e49a90150f5f632ebf2'),
   }
   constructor() { }

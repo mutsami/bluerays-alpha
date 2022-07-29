@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
   @ViewChild("lat") lat!: ElementRef;
   bnds:any;
   config = {
-    indexName: 'residential',
+    indexName: 'Home_sale',
     searchClient: algoliasearch('MS0SDRBX0K', 'd7d2fa3a66a52e49a90150f5f632ebf2'),
   } 
   body:any[];
@@ -35,7 +35,7 @@ export class MapComponent implements OnInit {
 
   ngAfterViewInit() { 
 
-    this.auth.getResidentialListings().pipe(take(1)).subscribe(e=>{ 
+    this.auth.getHomeSaleListings().pipe(take(1)).subscribe(e=>{ 
       this.mapData = e;
 
           // all of your map code here

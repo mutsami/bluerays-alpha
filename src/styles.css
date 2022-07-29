@@ -23,6 +23,12 @@
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       }
+
+    .bg-custom {
+        background-color: var(--medium);
+        color: var(--dark);
+        padding: 6%;
+    }
 .ellipsis2{
     overflow: hidden;
     text-overflow: ellipsis;
@@ -89,3 +95,31 @@
 .sidebar ul li a:hover {
     color: var(--medium)!important;
 }
+
+.ais-RangeInput-input {
+    padding: 0 0.2rem;
+    width: 5rem;
+    height: 1.5rem;
+    line-height: 1.5rem; }
+  
+  .ais-RangeInput-separator {
+    margin: 0 0.3rem; }
+  
+  .ais-RangeInput-submit {
+    margin-left: 0.3rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 0 0.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    font-size: 0.8rem;
+    color: #fff;
+    background-color: #0096db;
+    border: none;
+    border-radius: 5px;
+    -webkit-transition: 0.2s ease-out;
+    transition: 0.2s ease-out;
+    outline: none; }
+    .ais-RangeInput-submit:hover, .ais-RangeInput-submit:focus {
+      background-color: #0073a8; }

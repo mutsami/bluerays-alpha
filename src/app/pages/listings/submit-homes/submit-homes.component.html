@@ -1,0 +1,371 @@
+
+<div class="section">
+    <div class="container">
+      <div class="row">
+
+        <!-- Tabs Start -->
+        <div class="col-md-4">
+          <ul class="nav nav-tabs tab-cards" id="submitListingTab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="basic-info-tab" data-toggle="tab" href="#basic-info" role="tab" aria-controls="basic-info" aria-selected="true"> <span>01</span> Basic Information</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="false"><span>02</span> Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="location-tab" data-toggle="tab" href="#location" role="tab" aria-controls="location" aria-selected="false"><span>03</span> Location</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="features-tab" data-toggle="tab" href="#features" role="tab" aria-controls="features" aria-selected="false"><span>04</span> Features</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" id="details-tab" data-toggle="tab" href="#details" role="tab" aria-controls="details" aria-selected="false"><span>05</span> Details</a>
+            </li> -->
+          </ul>
+        </div>
+        <!-- Tabs End -->
+
+        <!-- Tab Content Start -->
+        <div class="col-md-8">
+          <form  [formGroup]="form" (ngSubmit)="submit()">
+            <div class="tab-content m-0" id="submitListingTabContent">
+
+              <!-- Basic Information Start -->
+              <div class="tab-pane fade show active" id="basic-info" role="tabpanel" aria-labelledby="basic-info-tab">
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <label>Property Description</label>
+                    <textarea formControlName="description" rows="4" class="form-control" placeholder="Property Description"></textarea>
+                    <div *ngIf="f['description'].touched && f['description'].invalid" style="color: red;">
+                      <div *ngIf="f['description'].errors && f['description'].errors['required']" > <small>Description is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>Property Name</label>
+                    <input formControlName="name" type="text" class="form-control" placeholder="Property Name" name="name" value="">
+                    <div *ngIf="f['name'].touched && f['name'].invalid" style="color: red;">
+                      <div *ngIf="f['name'].errors && f['name'].errors['required']" > <small>Name is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>Number of Rooms</label>
+                    <select formControlName="rooms" class="form-control" name="rooms">
+                      <option value="1">1</option>
+                      <option value="2">2</option> 
+                      <option value="3">3</option> 
+                      <option value="4">4</option> 
+                      <option value="5">5</option> 
+                    </select>
+                    <div *ngIf="f['rooms'].touched && f['rooms'].invalid" style="color: red;">
+                      <div *ngIf="f['rooms'].errors && f['rooms'].errors['required']" > <small>Number of rooms is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label>Property Type</label>
+                    <select formControlName="type" class="form-control" name="type">
+ 
+                      <option value="home_rent">Home For Rent</option> 
+                      <option value="home_sale">Home For Sale</option>  
+                      <option value="staycations">Staycations</option>  
+                    </select>
+                    
+                    <div *ngIf="f['type'].touched && f['type'].invalid" style="color: red;">
+                      <div *ngIf="f['type'].errors && f['type'].errors['required']" > <small>Type is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>Property Price</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Kes</span>
+                      </div>
+                      <input formControlName="price" type="number" class="form-control" name="price" placeholder="Property Price">
+                    </div>
+                    <div *ngIf="f['price'].touched && f['price'].invalid" style="color: red;">
+                      <div *ngIf="f['price'].errors && f['price'].errors['required']" > <small>Price is required.</small> </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-md-6">
+                    <label>Rental Period</label>
+                    <select formControlName="period" class="form-control" name="period">
+                      <option value="Monthly">Monthly</option>
+                      <option value="Yearly">Yearly</option>
+                    </select>
+                    <div *ngIf="f['period'].touched && f['period'].invalid" style="color: red;">
+                      <div *ngIf="f['period'].errors && f['period'].errors['required']" > <small>Period is required.</small> </div>
+                    </div>
+                  </div> -->
+                  <div class="col-md-6 form-group">
+                    <label>Number of bathrooms</label>
+                    <select formControlName="bathrooms" class="form-control" name="bathrooms">
+                      <option value="1">1</option>
+                      <option value="2">2</option> 
+                      <option value="3">3</option> 
+                      <option value="4">4</option> 
+                      <option value="5">5</option> 
+                    </select>
+                    <div *ngIf="f['bathrooms'].touched && f['bathrooms'].invalid" style="color: red;">
+                      <div *ngIf="f['bathrooms'].errors && f['bathrooms'].errors['required']" > <small>Number of bathrooms is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>Property Space / Lot size (Acres)</label>
+                    <input formControlName="size" type="number" class="form-control" placeholder="Property Space (Sqft)" name="space" value="">
+                    <div *ngIf="f['size'].touched && f['size'].invalid" style="color: red;">
+                      <div *ngIf="f['size'].errors && f['size'].errors['required']" > <small>Size is required.</small> </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-md-12 form-group">
+                    <label>Property Video</label>
+                    <input formControlName="videoUrl" type="text" class="form-control" placeholder="Property Video URL" name="video" value="">
+                    <div *ngIf="f['videoUrl'].touched && f['videoUrl'].invalid" style="color: red;">
+                      <div *ngIf="f['videoUrl'].errors && f['videoUrl'].errors['required']" > <small>VideoUrl is required.</small> </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+              <!-- Basic Information End -->
+
+              <!-- Gallery Start -->
+              <div class="tab-pane fade" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
+                <div> 
+                  <h4 class="title" style="margin-top: 0%;margin-bottom: 4%;"> Pick and/or upload images of the property </h4>
+                  <span class="acr-form-notice">*You can upload up only up to 5 images for your listing</span>
+                  <span class="acr-form-notice">*Your images should have a height below 600px</span>
+                  <span class="acr-form-notice">*Your first upload will serve as the thumbnail for the </span>
+                  <span class="acr-form-notice">*Listing images should be atleast 620x480 in dimensions</span>
+                </div>
+                <div class="my-3">
+                  <app-upload-form></app-upload-form>
+                </div>
+                <div class="my-2">
+                  <div class="card">
+                    <div class="card-header">List of Files</div>
+                    <ul
+                      class="list-group list-group-flush"
+                       
+                      style="overflow-y: auto;max-height: 50vh;"
+                    >
+                      <li *ngFor="let fileUpload of fileUploads" class="list-group-item">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <img [src]="fileUpload.url" style=" display: block;
+                            max-width:230px;
+                            max-height:95px;
+                            width: auto;
+                            height: auto;
+                            border-radius: 8px;
+                            border: 1px solid lightgrey; 
+                            image-rendering: auto;
+                            image-rendering: crisp-edges;
+                            image-rendering: pixelated;
+
+                            /* Safari seems to support, but seems deprecated and does the same thing as the others. */
+                            image-rendering: -webkit-optimize-contrast;" 
+                            alt="" srcset="">
+                          </div>
+                          <div class="col-sm-5">
+                            <a href="{{ fileUpload.url }}">{{ fileUpload.name }} <br> <small style="font-size: 10px; color: lightgray!important;">Uploaded {{ fileUpload.uploaded.toDate() | date }}</small> </a>                          </div>
+                          <div class="col-sm-1">
+                            <div class="form-check form-check-inline">
+                              <input (change)="include(fileUpload)" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" />
+                            </div>
+                          </div>
+                          <div class="col-sm-2">
+                            <button (click)="deleteFileUpload(fileUpload)"
+                              class="btn btn-danger btn-sm" style="float: right">
+                              Delete
+                            </button>
+                          </div>
+                        </div>  
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- Gallery End -->
+
+              <!-- Location Start -->
+              <div class="tab-pane fade" id="location" role="tabpanel" aria-labelledby="location-tab">
+                <div class="form-group submit-listing-map">
+                  <div #mapEl id="mapEl"></div>
+                </div>
+                <div class="form-group">
+                  <span class="acr-form-notice">Drag and drop the marker to identify your <b>Latitude</b> and <b>Longitude</b> </span>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <label>Full Address</label>
+                    <input formControlName="fullAddress"   type="text" name="address" class="form-control" placeholder="Full Address" value="{{address}}">
+                    <div *ngIf="f['fullAddress'].touched && f['fullAddress'].invalid" style="color: red;">
+                      <div *ngIf="f['fullAddress'].errors && f['fullAddress'].errors['required']" > <small>Full Address is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 form-group">
+                    <label>County</label>
+                    <input formControlName="county"   type="text" name="county" class="form-control" placeholder="Full Address" value="{{county}}">
+
+                    <div *ngIf="f['county'].touched && f['county'].invalid" style="color: red;">
+                      <div *ngIf="f['county'].errors && f['county'].errors['required']" > <small>County is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>Longitude</label>
+                    <input  formControlName="longitude" type="text" name="lng" id="lngVal" class="form-control" placeholder="Longitude" [value]="lngVal">
+                    <div *ngIf="f['longitude'].touched && f['longitude'].invalid" style="color: red;">
+                      <div *ngIf="f['longitude'].errors && f['longitude'].errors['required']" > <small>Longitude is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>Latitude</label>
+                    <input formControlName="latitude" type="text" name="lat" #lat id="latVal" class="form-control" placeholder="Latitude" [value]="latVal">
+                    <div *ngIf="f['latitude'].touched && f['latitude'].invalid" style="color: red;">
+                      <div *ngIf="f['latitude'].errors && f['latitude'].errors['required']" > <small>Latitude is required.</small> </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Location End -->
+
+              <!-- Features Start -->
+              <div class="tab-pane fade" id="features" role="tabpanel" aria-labelledby="features-tab">
+                <div class="row">
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <label class="acr-listing-feature">
+                      <input formControlName="title_deed" type="checkbox" name="feature1" value="">
+                      <i class="acr-feature-check fas fa-check"></i>
+                      <i class="acr-listing-feature-icon flaticon-blog"></i>
+                        Ready Title Deed
+                    </label>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <label class="acr-listing-feature">
+                      <input  formControlName="electricity"  type="checkbox" name="feature2" value="">
+                      <i class="acr-feature-check fas fa-check"></i>
+                      <i class="acr-listing-feature-icon flaticon-ceiling-light"></i>
+                        Electricity Avaliable
+                    </label>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <label class="acr-listing-feature">
+                      <input  formControlName="water"  type="checkbox" name="feature3" value="">
+                      <i class="acr-feature-check fas fa-check"></i>
+                      <i class="acr-listing-feature-icon flaticon-sink"></i>
+                        Water Avalaible
+                    </label>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <label class="acr-listing-feature">
+                      <input  formControlName="fenced"  type="checkbox" name="feature4" value="">
+                      <i class="acr-feature-check fas fa-check"></i>
+                      <i class="acr-listing-feature-icon flaticon-key"></i>
+                      Fenced
+                    </label>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <label class="acr-listing-feature">
+                      <input  formControlName="next_to_road"  type="checkbox" name="feature5" value="">
+                      <i class="acr-feature-check fas fa-check"></i>
+                      <i class="acr-listing-feature-icon flaticon-garage"></i>
+                        Next to Road
+                    </label>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <label class="acr-listing-feature">
+                      <input  formControlName="view"  type="checkbox" name="feature6" value="">
+                      <i class="acr-feature-check fas fa-check"></i>
+                      <i class="acr-listing-feature-icon flaticon-eye"></i>
+                      Pets Allowed
+                    </label>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6">
+                    <label class="acr-listing-feature">
+                      <input  formControlName="garden"  type="checkbox" name="feature6" value="">
+                      <i class="acr-feature-check fas fa-check"></i>
+                      <i class="acr-listing-feature-icon flaticon-eye"></i>
+                        Garden
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <input formControlName="terms" type="checkbox" class="custom-control-input" id="termsAndConditions">
+                    <label class="custom-control-label" for="termsAndConditions">I Agree to the terms & Conditions of Property Submission</label>
+                  </div>
+                  <div *ngIf="f['terms'].touched && f['terms'].invalid" style="color: red;">
+                    <div *ngIf="f['terms'].errors && f['terms'].errors['required']" > <small>Terms are required.</small> </div>
+                  </div>
+                </div>
+                <button [disabled]="form.invalid"  type="submit" class="btn-custom" name="submit">Submit Listing</button>
+              </div>
+              <!-- Features End -->
+
+              <!-- Details Start -->
+              <!-- <div class="tab-pane fade" id="details" role="tabpanel" aria-labelledby="details-tab">
+                <div class="row">
+                  
+                  <div class="col-md-6 form-group">
+                    <label>Beds</label>
+                    <input  formControlName="beds"  type="number" class="form-control" placeholder="Number of Beds" name="beds" value="">
+                    <div *ngIf="f['beds'].touched && f['beds'].invalid" style="color: red;">
+                      <div *ngIf="f['beds'].errors && f['beds'].errors['required']" > <small>Beds is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>Bathrooms</label>
+                    <input  formControlName="bathrooms"  type="number" class="form-control" placeholder="Number of Bathrooms" name="baths" value="">
+                    <div *ngIf="f['bathrooms'].touched && f['bathrooms'].invalid" style="color: red;">
+                      <div *ngIf="f['bathrooms'].errors && f['bathrooms'].errors['required']" > <small>Bathrooms is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>Condition</label>
+                    <input formControlName="condition"  type="text" class="form-control" placeholder="Property Condition" name="condition" value="">
+                    <div *ngIf="f['condition'].touched && f['condition'].invalid" style="color: red;">
+                      <div *ngIf="f['condition'].errors && f['condition'].errors['required']" > <small>Condition is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>Year Built</label>
+                    <input formControlName="built" type="text" class="form-control" placeholder="Property Year Built" name="built" value="">
+                    <div *ngIf="f['built'].touched && f['built'].invalid" style="color: red;">
+                      <div *ngIf="f['built'].errors && f['built'].errors['required']" > <small>Year built is required.</small> </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label>Neighborhood</label>
+                    <input formControlName="neighbourhood" type="text" class="form-control" placeholder="Property Neighborhood" name="neighborhood" value="">
+                    <div *ngIf="f['neighbourhood'].touched && f['neighbourhood'].invalid" style="color: red;">
+                      <div *ngIf="f['neighbourhood'].errors && f['neighbourhood'].errors['required']" > <small>Neighbourhood is required.</small> </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox">
+                    <input formControlName="terms" type="checkbox" class="custom-control-input" id="termsAndConditions">
+                    <label class="custom-control-label" for="termsAndConditions">I Agree to the terms & Conditions of Property Submission</label>
+                  </div>
+                  <div *ngIf="f['terms'].touched && f['terms'].invalid" style="color: red;">
+                    <div *ngIf="f['terms'].errors && f['terms'].errors['required']" > <small>Terms are required.</small> </div>
+                  </div>
+                </div>
+                <button [disabled]="form.invalid"  type="submit" class="btn-custom" name="submit">Submit Listing</button>
+              </div> -->
+              <!-- Details End -->
+
+            </div>
+          </form>
+
+        </div>
+        <!-- Tab Content End -->
+
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- Page specific Scripts -->
+  <script src="./../../../../assets/js/plugins/dropzone.min.js"></script>
+  <script src="./../../../../assets/js/plugins/dropzone.min.js"></script>
+  <script src="./../../../../assets/js/plugins/mapbox-gl.min.js"></script>
+  <script src="./../../../../assets/js/submit-listing-map.js"></script>

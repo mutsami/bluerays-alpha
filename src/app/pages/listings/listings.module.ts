@@ -13,7 +13,10 @@ import { UploadFormComponent } from './upload-form/upload-form.component';
 import { UploadListComponent } from './upload-list/upload-list.component';
 import { UploadDetailsComponent } from './upload-details/upload-details.component';
 import { ListingsDetailsComponent } from './listings-details/listings-details.component';
-import { SharedModule } from 'src/app/shared/shared.module'; 
+import { SharedModule } from 'src/app/shared/shared.module';
+import { SubmitLandComponent } from './submit-land/submit-land.component';
+import { SubmitHomesComponent } from './submit-homes/submit-homes.component';
+import { SubmitSpacesComponent } from './submit-spaces/submit-spaces.component'; 
 
 
 @NgModule({
@@ -25,7 +28,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
     UploadFormComponent,
     UploadListComponent,
     UploadDetailsComponent,
-    ListingsDetailsComponent
+    ListingsDetailsComponent,
+    SubmitLandComponent,
+    SubmitHomesComponent,
+    SubmitSpacesComponent
   ],
   imports: [
     CommonModule,

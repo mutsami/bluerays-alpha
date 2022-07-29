@@ -22,6 +22,8 @@ export class ListingsDetailsComponent implements OnInit {
     this.auth.getRecentListings().subscribe(e=>{
       this.recent = e;
     })
+
+    
    }
 
   ngOnInit(): void {

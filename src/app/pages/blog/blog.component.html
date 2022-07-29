@@ -27,187 +27,30 @@
           <div class="row masonry">
 
             <!-- Post Start -->
-            <div class="col-md-6 masonry-item">
+            <div *ngFor="let blog of blogs" class="col-md-6 masonry-item">
               <article class="post">
-                <div class="post-thumbnail">
-                  <a href="blog-single.html"><img src="https://via.placeholder.com/640x350" alt="blog post"></a>
+                <div class="post-thumbnail" >
+                  <a [routerLink]= "['/blog', blog.id]" >
+                    <img [src]="blog.cover_image | sanitizeHtml" style="height: 160px; background-size: cover;  "  alt="blog post">
+                  </a>
                 </div>
                 <div class="post-body">
-                  <div class="post-author">
+                  <!-- <div class="post-author">
                     <img src="https://via.placeholder.com/292x300" alt="author">
                     <div class="post-author-body">
                       <p> <a href="#">Heather Mclayn</a> </p>
                       <span class="post-date">March 3, 2020</span>
                     </div>
-                  </div>
-                  <h5 class="post-title"> <a href="blog-single.html">What agencies are looking for in an agent</a> </h5>
-                  <p class="post-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                  </div> -->
+                  <h5 class="post-title"> <a  [routerLink]= "['/blog', blog.id]" >{{blog.title}}</a> </h5>
+                  <p class="post-text ellipsis2">
+                    {{blog.description}}
                   </p>
                   <div class="post-controls">
-                    <a href="#" class="btn-custom secondary btn-sm">Read More</a>
+                    <a [routerLink]= "['/blog', blog.id]" class="btn-custom secondary btn-sm">Read More</a>
                     <div class="post-comment-authors">
-                      <span>Comments by: </span>
-                      <div class="post-comment-authors-img">
-                        <a href="#"> <img src="https://via.placeholder.com/292x300" alt="comment author"> </a>
-                        <a href="#"> <img src="https://via.placeholder.com/292x300" alt="comment author"> </a>
-                        <a href="#"> +7 </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- Post End -->
+                      <p><small style="font-size: 10px;">{{blog.uploaded.toDate() | date : 'medium' }}</small></p>
 
-            <!-- Post Start -->
-            <div class="col-md-6 masonry-item">
-              <article class="post">
-                <div class="post-thumbnail">
-                  <a href="blog-single.html"><img src="https://via.placeholder.com/600" alt="blog post"></a>
-                </div>
-                <div class="post-body">
-                  <div class="post-author">
-                    <img src="https://via.placeholder.com/292x300" alt="author">
-                    <div class="post-author-body">
-                      <p> <a href="#">Heather Mclayn</a> </p>
-                      <span class="post-date">March 3, 2020</span>
-                    </div>
-                  </div>
-                  <h5 class="post-title"> <a href="blog-single.html">Changing the way we sell and buy real estate</a> </h5>
-                  <p class="post-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                  </p>
-                  <div class="post-controls">
-                    <a href="#" class="btn-custom secondary btn-sm">Read More</a>
-                    <div class="post-comment-authors">
-                      <span>0 Comments</span>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- Post End -->
-
-            <!-- Post Start -->
-            <div class="col-md-6 masonry-item">
-              <article class="post">
-                <div class="post-thumbnail">
-                  <a href="blog-single.html"><img src="https://via.placeholder.com/600" alt="blog post"></a>
-                </div>
-                <div class="post-body">
-                  <div class="post-author">
-                    <img src="https://via.placeholder.com/292x300" alt="author">
-                    <div class="post-author-body">
-                      <p> <a href="#">Randy Blue</a> </p>
-                      <span class="post-date">March 13, 2020</span>
-                    </div>
-                  </div>
-                  <h5 class="post-title"> <a href="blog-single.html">Families, its the best time to start buying</a> </h5>
-                  <p class="post-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                  </p>
-                  <div class="post-controls">
-                    <a href="#" class="btn-custom secondary btn-sm">Read More</a>
-                    <div class="post-comment-authors">
-                      <span>Comments by: </span>
-                      <div class="post-comment-authors-img">
-                        <a href="#"> <img src="https://via.placeholder.com/292x300" alt="comment author"> </a>
-                        <a href="#"> <img src="https://via.placeholder.com/292x300" alt="comment author"> </a>
-                        <a href="#"> +3 </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- Post End -->
-
-            <!-- Post Start -->
-            <div class="col-md-6 masonry-item">
-              <article class="post">
-                <div class="post-thumbnail">
-                  <a href="blog-single.html"><img src="https://via.placeholder.com/1280x854" alt="blog post"></a>
-                </div>
-                <div class="post-body">
-                  <div class="post-author">
-                    <img src="https://via.placeholder.com/292x300" alt="author">
-                    <div class="post-author-body">
-                      <p> <a href="#">Heather Mclayn</a> </p>
-                      <span class="post-date">March 3, 2020</span>
-                    </div>
-                  </div>
-                  <h5 class="post-title"> <a href="blog-single.html">Our all new duplex apartment is up for grabs</a> </h5>
-                  <p class="post-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                  </p>
-                  <div class="post-controls">
-                    <a href="#" class="btn-custom secondary btn-sm">Read More</a>
-                    <div class="post-comment-authors">
-                      <span>0 Comments</span>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- Post End -->
-
-            <!-- Post Start -->
-            <div class="col-md-6 masonry-item">
-              <article class="post">
-                <div class="post-thumbnail">
-                  <a href="blog-single.html"><img src="https://via.placeholder.com/1280x854" alt="blog post"></a>
-                </div>
-                <div class="post-body">
-                  <div class="post-author">
-                    <img src="https://via.placeholder.com/292x300" alt="author">
-                    <div class="post-author-body">
-                      <p> <a href="#">Randy Blue</a> </p>
-                      <span class="post-date">March 3, 2020</span>
-                    </div>
-                  </div>
-                  <h5 class="post-title"> <a href="blog-single.html">Villa sales are going down this year, find out why</a> </h5>
-                  <p class="post-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                  </p>
-                  <div class="post-controls">
-                    <a href="#" class="btn-custom secondary btn-sm">Read More</a>
-                    <div class="post-comment-authors">
-                      <span>0 Comments </span>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            </div>
-            <!-- Post End -->
-
-            <!-- Post Start -->
-            <div class="col-md-6 masonry-item">
-              <article class="post">
-                <div class="post-thumbnail">
-                  <a href="blog-single.html"><img src="https://via.placeholder.com/640x350" alt="blog post"></a>
-                </div>
-                <div class="post-body">
-                  <div class="post-author">
-                    <img src="https://via.placeholder.com/292x300" alt="author">
-                    <div class="post-author-body">
-                      <p> <a href="#">Heather Mclayn</a> </p>
-                      <span class="post-date">March 3, 2020</span>
-                    </div>
-                  </div>
-                  <h5 class="post-title"> <a href="blog-single.html">Flats in wisconsin are being held for rental</a> </h5>
-                  <p class="post-text">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-                  </p>
-                  <div class="post-controls">
-                    <a href="#" class="btn-custom secondary btn-sm">Read More</a>
-                    <div class="post-comment-authors">
-                      <span>Comments by: </span>
-                      <div class="post-comment-authors-img">
-                        <a href="#"> <img src="https://via.placeholder.com/292x300" alt="comment author"> </a>
-                        <a href="#"> <img src="https://via.placeholder.com/292x300" alt="comment author"> </a>
-                        <a href="#"> +3 </a>
-                      </div>
                     </div>
                   </div>
                 </div>

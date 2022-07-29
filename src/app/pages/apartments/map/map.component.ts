@@ -22,7 +22,7 @@ export class MapComponent implements OnInit {
   @ViewChild("lat") lat!: ElementRef;
   bnds:any;
   config = {
-    indexName: 'apartments',
+    indexName: 'staycations',
     searchClient: algoliasearch('MS0SDRBX0K', 'd7d2fa3a66a52e49a90150f5f632ebf2'),
   } 
   body:any[];

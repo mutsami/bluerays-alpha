@@ -18,6 +18,7 @@ export class SubmitComponent implements OnInit {
   latVal:any;
   lngVal:any;
   address:any;
+  county:any;
   form!: FormGroup;
   fileUploads?: any[];
   
@@ -32,25 +33,25 @@ export class SubmitComponent implements OnInit {
       status: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
       price: new FormControl('', Validators.required),
-      period: new FormControl('', Validators.required),
+      // period: new FormControl('', Validators.required),
       size: new FormControl('', Validators.required),
-      videoUrl: new FormControl('', Validators.required), 
+      // videoUrl: new FormControl('', Validators.required), 
       gallery: new FormControl('' ),
       fullAddress: new FormControl(''),
-      region: new FormControl('', Validators.required),
+      county: new FormControl(''),
       longitude: new FormControl(''),
       latitude: new FormControl(''),
-      pets: new FormControl('' ),
-      furnished: new FormControl('' ),
-      cooling: new FormControl('' ),
-      parking: new FormControl('' ),
-      mailbox: new FormControl('' ),
+      title_deed: new FormControl('' ),
+      electricity: new FormControl('' ),
+      water: new FormControl('' ),
+      fenced: new FormControl('' ),
+      next_to_road: new FormControl('' ),
       view: new FormControl('' ),
-      beds: new FormControl('', Validators.required),
-      bathrooms: new FormControl('', Validators.required),
-      condition: new FormControl('', Validators.required),
-      built: new FormControl('', Validators.required),
-      neighbourhood: new FormControl('', Validators.required),
+      // beds: new FormControl('', Validators.required),
+      // bathrooms: new FormControl('', Validators.required),
+      // condition: new FormControl('', Validators.required),
+      // built: new FormControl('', Validators.required),
+      // neighbourhood: new FormControl('', Validators.required),
       terms: new FormControl('', Validators.required),
       uploader_id: new FormControl(''),
       uploaded: new FormControl(''),
@@ -61,7 +62,8 @@ export class SubmitComponent implements OnInit {
     this.form.patchValue({ 
       lngVal: this.lngVal,
       latVal: this.latVal,
-      fullAddress: this.address 
+      fullAddress: this.address,
+      county: this.address 
     });
 
     this.uploadService.getFiles().subscribe((fileUploads: any[] | undefined) => { 
@@ -110,7 +112,7 @@ export class SubmitComponent implements OnInit {
 
       this.mapServe.getAddress(lngLat.lng,lngLat.lat).subscribe((e:any)=>{
         this.address = e.features[0].place_name;
-        console.log('place',e.features[0])
+        this.county = e.features[0].context[1].text;
       })
 
 
@@ -210,6 +212,7 @@ imageExists(id: any) {
   submit(){
     this.form.patchValue({
       fullAddress: this.address,
+      county: this.county,
       longitude:this.lngVal,
       latitude:this.latVal,
       gallery:this.images,

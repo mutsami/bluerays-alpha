@@ -59,19 +59,35 @@ const routes: Routes = [{path:"",component:HomeComponent},
 { path: 'forgot-password', component: ForgotPasswordComponent },
 { path: 'verify-email-address', component: VerifyEmailComponent },
 {
-  path: 'commercial',
-  loadChildren: () => import('./pages/commercial/commercial.module').then(m => m.CommercialModule)
+  path: 'land-sale',
+  loadChildren: () => import('./pages/land-sale/land-sale.module').then(m => m.LandSaleModule)
 },
 {
-  path: 'residential',
+  path: 'land-lease',
+  loadChildren: () => import('./pages/land-lease/land-lease.module').then(m => m.LandLeaseModule)
+},
+{
+  path: 'staycations',
+  loadChildren: () => import('./pages/staycations/staycations.module').then(m => m.StaycationsModule)
+},
+{
+  path: 'event-spaces',
+  loadChildren: () => import('./pages/event-spaces/event-spaces.module').then(m => m.EventSpacesModule)
+},
+{
+  path: 'office-space',
+  loadChildren: () => import('./pages/office-space/office-space.module').then(m => m.OfficeSpaceModule)
+},
+{
+  path: 'home-sale',
   loadChildren: () => import('./pages/residential/residential.module').then(m => m.ResidentialModule)
 },
 {
-  path: 'villas',
-  loadChildren: () => import('./pages/villas/villas.module').then(m => m.VillasModule)
+  path: 'home-rent',
+  loadChildren: () => import('./pages/commercial/commercial.module').then(m => m.CommercialModule)
 },
 {
-  path: 'apartments',
+  path: 'staycations',
   loadChildren: () => import('./pages/apartments/apartments.module').then(m => m.ApartmentsModule)
 },
 {

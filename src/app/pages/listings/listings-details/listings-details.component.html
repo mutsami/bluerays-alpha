@@ -1,5 +1,5 @@
   <!-- Subheader Start -->
-  <div class="subheader subheader-2 bg-cover bg-center dark-overlay" [style.background-image]="'url(' + listing.gallery[0]?.url + ')'">
+  <div class="subheader subheader-2 bg-cover bg-center" [style.background-image]="'url(' + listing.gallery[0]?.url + ')'">
 
   </div>
   <div class="acr-listing-details">
@@ -10,6 +10,7 @@
       <div class="acr-listing-section-body">
         <div class="acr-listing-section-price">
           <span>For Sale</span>
+          
           <h4>{{listing.price  | currency:'KES '}}</h4>
           <span>Est. Mortgage</span>
           <p>$1,300/mo</p>

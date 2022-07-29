@@ -28,32 +28,14 @@
                               <div class="row">
                                 <div class="col-sm-5">
 
-                                  <div class="listing-thumbnail" style="width: fit-content!important;">
+                                  <div class="listing-thumbnail" style="width: fit-content!important; height: 130px;">
                                     <a [routerLink]="['/listings/details', hit.objectID]"><img [src]="hit.gallery[0]?.url" onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';"   alt="listing"></a>
                                   </div>
                                 </div>
                                 <div class="col-sm-7">
 
                                   <div class="listing-body">
-                                    <div class="listing-author">
-                                      <img [src]="hit?.uploader_photoURL"  onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';" alt="author">
-                                      <div class="listing-author-body">
-                                        <p>
-                                          <a href="#"><ais-highlight *ngIf="hit?.uploader_displayName" attribute="uploader_displayName" [hit]="hit"></ais-highlight></a> </p>
-                                        <span class="listing-date">{{hit.uploaded._seconds * 1000 | date:'medium'}}</span>
-                                      </div>
-                                      &nbsp;
-                                      <div class="dropdown options-dropdown">
-                                        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                          <ul>
-                                            <li> <a  (click)="getUploaderPhone(hit.uploader_id)" > <i class="fas fa-phone"></i> Call Agent</a> </li>
-                                            <li> <a (click)="getUploaderEmail(hit.uploader_id)"> <i class="fas fa-envelope"></i> Send Message</a> </li>
-                                            <li> <a href="listing-details-v1.html"> <i class="fas fa-bookmark"></i> Book Tour</a> </li>
-                                          </ul>
-                                        </div>
-                                      </div>
-                                    </div>
+                                    
                                     <h6 class="listing-title" >
                                       <a style="margin-bottom: 0px;" [routerLink]="['/listings/details', hit.objectID]" [title]="hit.name">
                                         <ais-highlight attribute="name" [hit]="hit"></ais-highlight>
@@ -121,9 +103,9 @@
           <div class="acr-category">
             <div class="acr-category-thumb">
               <i class="flaticon-company"></i>
-              <a [routerLink]="['/commercial']" ><img src="./../../../assets/img/categories/commercial.jpg" alt="category"></a>
+              <a [routerLink]="['/land-sale']" ><img src="./../../../assets/img/categories/commercial.jpg" alt="category"></a>
               <div class="acr-category-body">
-                <h5> <a [routerLink]="['/commercial']" >Commercial</a> </h5>
+                <h5> <a [routerLink]="['/land-sale']" >Land for sale</a> </h5>
                 <!-- <span>90 Listings</span> -->
               </div>
             </div>
@@ -134,9 +116,9 @@
           <div class="acr-category">
             <div class="acr-category-thumb">
               <i class="flaticon-house"></i>
-              <a [routerLink]="['/residential']"><img src="./../../../assets/img/categories/residential.jpg" alt="category"></a>
+              <a [routerLink]="['/land-lease']"><img src="./../../../assets/img/categories/residential.jpg" alt="category"></a>
               <div class="acr-category-body">
-                <h5> <a  [routerLink]="['/residential']">Residential</a> </h5>
+                <h5> <a  [routerLink]="['/event-lease']">Land for lease</a> </h5>
                 <!-- <span>433 Listings</span> -->
               </div>
             </div>
@@ -146,11 +128,11 @@
         <div class="col-lg-4 col-md-6">
           <div class="acr-category">
             <div class="acr-category-thumb">
-              <i class="flaticon-villa"></i>
-              <a  [routerLink]="['/villas']"><img src="./../../../assets/img/categories/villas.jpg" alt="category"></a>
+              <i class="flaticon-garage"></i>
+              <a [routerLink]="['/event-spaces']"><img src="./../../../assets/img/categories/duplex.jpg" alt="category"></a>
               <div class="acr-category-body">
-                <h5> <a  [routerLink]="['/villas']">Villas</a> </h5>
-                <!-- <span>221 Listings</span> -->
+                <h5> <a [routerLink]="['/event-spaces']">Event Spaces</a> </h5>
+                <!-- <span>365 Listings</span> -->
               </div>
             </div>
           </div>
@@ -160,9 +142,9 @@
           <div class="acr-category">
             <div class="acr-category-thumb">
               <i class="flaticon-apartment"></i>
-              <a [routerLink]="['/apartments']"><img src="./../../../assets/img/categories/apartments.jpg" alt="category"></a>
+              <a [routerLink]="['/home-sale']"><img src="./../../../assets/img/categories/apartments.jpg" alt="category"></a>
               <div class="acr-category-body">
-                <h5> <a  [routerLink]="['/apartments']">Apartments</a> </h5>
+                <h5> <a  [routerLink]="['/apartments']">Homes for sale</a> </h5>
                 <!-- <span>185 Listings</span> -->
               </div>
             </div>
@@ -173,9 +155,9 @@
           <div class="acr-category">
             <div class="acr-category-thumb">
               <i class="flaticon-beach-house"></i>
-              <a [routerLink]="['/beach-house']"><img src="./../../../assets/img/categories/beachhouse.jpg" alt="category"></a>
+              <a [routerLink]="['/home-rent']"><img src="./../../../assets/img/categories/beachhouse.jpg" alt="category"></a>
               <div class="acr-category-body">
-                <h5> <a  [routerLink]="['/beach-house']">Beach House</a> </h5>
+                <h5> <a  [routerLink]="['/beach-house']">Homes for rent</a> </h5>
                 <!-- <span>230 Listings</span> -->
               </div>
             </div>
@@ -185,11 +167,11 @@
         <div class="col-lg-4 col-md-6">
           <div class="acr-category">
             <div class="acr-category-thumb">
-              <i class="flaticon-garage"></i>
-              <a  [routerLink]="['/duplex']"><img src="./../../../assets/img/categories/duplex.jpg" alt="category"></a>
+              <i class="flaticon-villa"></i>
+              <a  [routerLink]="['/staycations']"><img src="./../../../assets/img/categories/villas.jpg" alt="category"></a>
               <div class="acr-category-body">
-                <h5> <a [routerLink]="['/duplex']">Duplex</a> </h5>
-                <!-- <span>365 Listings</span> -->
+                <h5> <a  [routerLink]="['/villas']">Staycations</a> </h5>
+                <!-- <span>221 Listings</span> -->
               </div>
             </div>
           </div>
@@ -209,11 +191,8 @@
           <div class="cta cta-2 item1">
             <i class="flaticon-sales-agent"></i>
             <div class="cta-body">
-              <h4>Buying a Home?</h4>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-              </p>
-              <a [routerLink]="['/listings/grid']" routerLinkActive="router-link-active"  class="btn-link">Find Out More <i class="fas fa-arrow-right"></i> </a>
+              <h4>Buying a Home?</h4> 
+              <a [routerLink]="['/listings/grid']" routerLinkActive="router-link-active"  class="btn-link">Search homes<i class="fas fa-arrow-right"></i> </a>
             </div>
           </div>
         </div>
@@ -222,10 +201,8 @@
             <i class="flaticon-sold"></i>
             <div class="cta-body">
               <h4>Selling a Home?</h4>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-              </p>
-              <a [routerLink]="['/pricing']" class="btn-link">Find Out More <i class="fas fa-arrow-right"></i> </a>
+              
+              <a [routerLink]="['/pricing']" class="btn-link">Start listing<i class="fas fa-arrow-right"></i> </a>
             </div>
           </div>
         </div>

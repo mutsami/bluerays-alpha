@@ -16,7 +16,8 @@ import { SharedModule } from './shared/shared.module';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './pages/verify-email/verify-email.component';
+import { VerifyEmailComponent } from './pages/verify-email/verify-email.component'; 
+import { TimeagoModule } from 'ngx-timeago';
  
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { VerifyEmailComponent } from './pages/verify-email/verify-email.componen
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent 
+    VerifyEmailComponent, 
   ],
   imports: [
     BrowserModule,
@@ -37,7 +38,9 @@ import { VerifyEmailComponent } from './pages/verify-email/verify-email.componen
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
-    AngularFireStorageModule // storage
+    AngularFireStorageModule, // storage,
+    TimeagoModule.forRoot(),
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

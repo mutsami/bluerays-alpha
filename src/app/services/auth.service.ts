@@ -1,3 +1,4 @@
+import { Blog } from './../models/blog';
 import { Injectable, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore } from '@angular/fire/compat/firestore';
@@ -12,6 +13,10 @@ import { User } from '../models/user';
 })
 export class AuthService {
   userData: any; // Save logged in user data
+
+  blogCollection!: AngularFirestoreCollection<Blog>;
+  blogs!: Observable<Blog[]>;
+  blogDoc?: AngularFirestoreDocument<Blog>;
 
   user$: Observable<any>;
   listingCollection!: AngularFirestoreCollection<any>;
@@ -60,8 +65,8 @@ export class AuthService {
         })
     );
   }
-  
-  
+
+ 
   // Sign in with email/password
   SignIn(email: string, password: string) {
     return this.afAuth
@@ -117,8 +122,10 @@ export class AuthService {
   }
   // Sign in with Google
   GoogleAuth() {
+    console.log('failed')
     return this.AuthLogin(new  firebase.auth.GoogleAuthProvider()).then((res: any) => {
       if (res) {
+        
         this.router.navigate(['login']);
       }
     });
@@ -239,8 +246,8 @@ export class AuthService {
     );
   }
 
-  getCommercialListings() {
-    this.listingCollection = this.afs.collection('listings', ref => ref.orderBy('uploaded','desc').where('type','==','commercial'));
+  getLandSaleListings() {
+    this.listingCollection = this.afs.collection('listings', ref => ref.orderBy('uploaded','desc').where('type','==','land_sale'));
     return this.listingCollection
       .snapshotChanges().pipe(
         map(actions => {
@@ -252,8 +259,9 @@ export class AuthService {
         })
     );
   }
-  getResidentialListings() {
-    this.listingCollection = this.afs.collection('listings', ref => ref.orderBy('uploaded','desc').where('type','==','residential'));
+
+  getLandLeaseListings() {
+    this.listingCollection = this.afs.collection('listings', ref => ref.orderBy('uploaded','desc').where('type','==','land_lease'));
     return this.listingCollection
       .snapshotChanges().pipe(
         map(actions => {
@@ -265,6 +273,49 @@ export class AuthService {
         })
     );
   }
+  getEventSpacesListings() {
+    this.listingCollection = this.afs.collection('listings', ref => ref.orderBy('uploaded','desc').where('type','==','event_spaces'));
+    return this.listingCollection
+      .snapshotChanges().pipe(
+        map(actions => {
+        return actions.map(a => {
+            const data = a.payload.doc.data() as any;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+        });
+        })
+    );
+  }
+
+  getHomeSaleListings() {
+    this.listingCollection = this.afs.collection('listings', ref => ref.orderBy('uploaded','desc').where('type','==','home_sale'));
+    return this.listingCollection
+      .snapshotChanges().pipe(
+        map(actions => {
+        return actions.map(a => {
+            const data = a.payload.doc.data() as any;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+        });
+        })
+    );
+  }
+
+  getHomeRentListings() {
+    this.listingCollection = this.afs.collection('listings', ref => ref.orderBy('uploaded','desc').where('type','==','home_rent'));
+    return this.listingCollection
+      .snapshotChanges().pipe(
+        map(actions => {
+        return actions.map(a => {
+            const data = a.payload.doc.data() as any;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+        });
+        })
+    );
+  }
+
+  
   getVillasListings() {
     this.listingCollection = this.afs.collection('listings', ref => ref.orderBy('uploaded','desc').where('type','==','villas'));
     return this.listingCollection
@@ -321,6 +372,56 @@ export class AuthService {
   getUploaderID(id: any){
     return this.afs.doc(`users/${id}`).valueChanges()
   }
+
+  
+  getBlog(id: any){
+    return this.afs.doc(`blogs/${id}`).valueChanges()
+  }
+
+  getBlogs() {
+    this.blogCollection = this.afs.collection('blogs', ref => ref.orderBy('uploaded','desc'));
+    return this.blogCollection
+      .snapshotChanges().pipe(
+        map(actions => {
+        return actions.map(a => {
+            const data = a.payload.doc.data() as Blog;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+        });
+        })
+    );
+  }
+  getFirstBlogs() {
+    this.blogCollection = this.afs.collection('blogs', ref => ref.orderBy('uploaded','asc').limit(2));
+    return this.blogCollection
+      .snapshotChanges().pipe(
+        map(actions => {
+        return actions.map(a => {
+            const data = a.payload.doc.data() as Blog;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+        });
+        })
+    );
+  }
+
+  updateBlog(id: string,blog: any) {
+    this.afs.doc('blogs/' + id).update(blog).then(()=>{
+      this.router.navigate(['dashboard/blog']).then(()=>{ 
+          // this.notifyService.showSuccess("The blog has been edited succefully.", "Saved!!")
+      })
+
+    })
+  }
+
+  createBlog(blog: Blog){
+    return this.afs.collection('blogs').add(blog)
+  }
+
+deleteBlog(blog_id: string){
+  this.afs.doc('blogs/' + blog_id).delete();
+}
+
 
 
   

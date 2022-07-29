@@ -2,7 +2,9 @@
     <div class="row">
       <div class="col-sm-6">
         <div  class="listing-thumbnail">
-          <a [routerLink]="['/listings/details',item.id]"><img style="height: 100%;" [src]="item.gallery[0]?.url" onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';"  alt="listing"></a>
+          <a [routerLink]="['/listings/details',item.id]">
+            <img style="height: 100%; width:auto" [src]="item.gallery[0]?.url" onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';"  alt="listing">
+          </a>
           <div class="listing-badges">
             <span class="listing-badge featured"> <i class="fas fa-star"></i> </span>
             <span class="listing-badge pending"> Pending</span>
@@ -15,7 +17,7 @@
       </div>
       <div class="col-sm-6">
         <div class="listing-body">
-          <div class="listing-author">
+          <!-- <div class="listing-author">
             <img [src]="item.uploader_photoURL" onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';"  alt="author">
             <div class="listing-author-body">
               <p *ngIf="item.uploader_displayName" > <a href="#">{{item.uploader_displayName}}</a> </p>
@@ -33,7 +35,7 @@
                 </ul>
               </div>
             </div>
-          </div>
+          </div> -->
           <h5 class="listing-title"> <a [routerLink]="['/listings/details',item.id]" [title]="item.name">{{item.name}}</a> </h5>
           <span class="listing-price">{{item.price | currency:'KES '}}</span>
           <p class="listing-text ellipsis2">{{item.description}}</p>
