@@ -1,0 +1,35 @@
+
+<div class="container" [hidden]="authService.userData" style="margin-top: 5%;margin-bottom: 5%;">
+    <h1>Sign In with Your Phone Number</h1>
+    <p class="subtitle">Enter the code generated on your mobile device below to log in!</p>
+
+    <form method="get" class="digit-group" data-group-name="digits" data-autosubmit="false" autocomplete="off">
+      <input class="subtitle" type="text" [(ngModel)]="phoneNumber.country" id="digit-1" placeholder="254" maxlength="3" name="digit-1" data-next="digit-2" />
+      <span class="splitter">&ndash;</span>
+      <input class="subtitle" type="text" [(ngModel)]="phoneNumber.area" placeholder="712"  maxlength="3" id="digit-2" name="digit-2" data-next="digit-3" data-previous="digit-1" />
+      <input class="subtitle" type="text" [(ngModel)]="phoneNumber.prefix" placeholder="345"  maxlength="3" id="digit-3" name="digit-3" data-next="digit-4" data-previous="digit-2" />
+      
+      <input class="subtitle"  type="text" [(ngModel)]="phoneNumber.line" placeholder="678" maxlength="3" id="digit-4" name="digit-4" data-next="digit-5" data-previous="digit-3" />
+     
+    </form>
+  
+    <div style="margin-top: 5%;margin-bottom: 5%;" id="recaptcha-container"></div>
+  
+    <button class="btn" (click)="sendLoginCode()"> <small>SMS Text Login Code</small> </button>
+  
+    <div *ngIf="windowRef.confirmationResult">
+      <hr>
+      <label for="code" class="subtitle">Enter your Verification Code Here</label><br>
+      <input type="text" name="code" [(ngModel)]="verificationCode">
+      &nbsp;
+      <button class="btn" (click)="verifyLoginCode()"><small>Verify</small></button>
+    </div>
+  
+</div>
+  
+  <div *ngIf="authService.userData">
+    You have successfully logged in with your phone number!
+  
+    UserId: {{ authService.userData?.uid }}
+  
+  </div>

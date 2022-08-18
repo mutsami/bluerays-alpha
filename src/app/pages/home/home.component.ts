@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import algoliasearch from 'algoliasearch/lite';
+import algoliasearch from 'algoliasearch/lite'; 
+import Flickity from 'flickity';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
+  ngOnInit() { 
   }
 
   getUploaderEmail(id:any){   

@@ -1,8 +1,8 @@
 :root {
-    --primary-color: hsl(196, 67%, 45%);
-    --dark: hsl(196, 67%, 20%);
-    --medium: hsl(196, 67%, 66%);
-    --light: hsl(196, 67%, 93%); 
+    --primary-color: hsl(215, 100%, 25%);
+    --dark: hsl(215, 100%, 20%);
+    --medium: hsl(215, 100%, 66%);
+    --light: hsl(215, 100%, 93%); 
 
     --secondary-color: hsl(30, 92%, 66%);
     --sec_dark: hsl(30, 92%,20%);
@@ -123,3 +123,20 @@
     outline: none; }
     .ais-RangeInput-submit:hover, .ais-RangeInput-submit:focus {
       background-color: #0073a8; }
+
+  
+.hscroll:hover{
+transform: scale(1.01);
+animation: scale 13s linear;
+}
+.hscroll2:hover{
+transform: scale(1.01);
+animation: scale 13s linear;
+}
+ 
+.subtitle{
+     
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 16px;
+}

@@ -16,7 +16,8 @@ import { ListingsDetailsComponent } from './listings-details/listings-details.co
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SubmitLandComponent } from './submit-land/submit-land.component';
 import { SubmitHomesComponent } from './submit-homes/submit-homes.component';
-import { SubmitSpacesComponent } from './submit-spaces/submit-spaces.component'; 
+import { SubmitSpacesComponent } from './submit-spaces/submit-spaces.component';
+import { SubmitPageComponent } from './submit-page/submit-page.component'; 
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { SubmitSpacesComponent } from './submit-spaces/submit-spaces.component';
     ListingsDetailsComponent,
     SubmitLandComponent,
     SubmitHomesComponent,
-    SubmitSpacesComponent
+    SubmitSpacesComponent,
+    SubmitPageComponent
   ],
   imports: [
     CommonModule,

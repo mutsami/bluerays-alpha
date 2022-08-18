@@ -41,7 +41,7 @@
           <span>OR</span>
         </div>
         <div class="social-login">
-          <button type="button" class="acr-social-login facebook" (click)="auth.GoogleAuth()"><i class="fab fa-facebook-f"></i> Continue with Facebook </button>
+          <button type="button" class="acr-social-login facebook" [routerLink]="['/login/phone']" routerLinkActive="router-link-active"  ><i class="fab fa-phone"></i> Continue with Phone </button>
           <button type="button" class="acr-social-login google" (click)="auth.GoogleAuth()"><i class="fab fa-google"></i> Continue with Google</button>
         </div>
         <p class="text-center mb-0">Don't have an account? <a [routerLink]="['/register']">Create One</a> </p>
@@ -77,7 +77,7 @@
   <!-- Subheader End -->
 
   <div class="section">
-    <div class="subheader user-subheader" style="margin-top:6%!important; padding: 0%;"  >
+    <div class="subheader user-subheader" style="padding: 0%;"  >
       <div class="container">
         <div class="media">
           <img  src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
@@ -105,7 +105,7 @@
                 </div>
               </div>
             </div>
-          <a [routerLink]="['/listings/submit']" routerLinkActive="router-link-active"  class="btn-custom secondary mr-0">Submit Listing <i class="fas mr-0 fa-plus"></i> </a>
+          <a [routerLink]="['/listings/submit-page']" routerLinkActive="router-link-active"  class="btn-custom secondary mr-0">Submit Listing <i class="fas mr-0 fa-plus"></i> </a>
         </div>
       </div>
     </div>

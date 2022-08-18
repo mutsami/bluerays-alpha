@@ -121,9 +121,8 @@ export class AuthService {
     return user !== null && user.emailVerified !== false ? true : false;
   }
   // Sign in with Google
-  GoogleAuth() {
-    console.log('failed')
-    return this.AuthLogin(new  firebase.auth.GoogleAuthProvider()).then((res: any) => {
+  GoogleAuth() { 
+    return this.AuthLogin(new firebase.auth.GoogleAuthProvider()).then((res: any) => {
       if (res) {
         
         this.router.navigate(['login']);

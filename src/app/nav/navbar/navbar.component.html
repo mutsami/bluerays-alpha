@@ -79,10 +79,13 @@
             <li> <a href="#"> <i class="fab fa-twitter"></i> </a> </li>
           </ul>
 
-          <ul class="top-header-nav">
-            <li> <a [routerLink]= "['/login']"> Login</a> </li>
+          <ul *ngIf="!auth.userData" class="top-header-nav">
+            <li  > <a [routerLink]= "['/login']"> Login</a> </li>
             <li>or</li>
             <li> <a [routerLink]= "['/register']"> Signup</a> </li>
+          </ul>
+          <ul *ngIf="auth.userData" class="top-header-nav">
+             <a style="color: white; cursor:pointer;" (click)="auth.SignOut()"> Logout</a> 
           </ul>
         </div>
       </div>
@@ -182,7 +185,7 @@
         <div class="header-controls">
           <ul class="header-controls-inner d-none d-lg-flex">
             <li>
-              <a  [routerLink]= "['/listings/submit']" class="btn-custom primary">Submit Listing <i class="fas fa-plus"></i> </a>
+              <a  [routerLink]= "['/listings/submit-page']" class="btn-custom primary">Submit Listing <i class="fas fa-plus"></i> </a>
             </li>
           </ul>
           <!-- Toggler -->

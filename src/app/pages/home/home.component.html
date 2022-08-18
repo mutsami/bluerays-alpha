@@ -92,12 +92,53 @@
   <!-- Categories Start -->
   <div class="section section-padding">
     <div class="container">
-
       <div class="section-title-wrap section-header">
         <h5 class="custom-primary">Categories</h5>
         <h2 class="title">Browse By Category</h2>
+        <div style="text-align:left; font-style:italic;">
+          <p>Scroll to left for more picture</p>
+        </div>
       </div>
-      <div class="row">
+
+      <div class="container scroll-container">
+        <div class="gridscroll">
+          
+          <a class="card" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Sydney,home&quot;);" [routerLink]="['/land-sale']"aria-selected="false">
+            <div class="card__overlay"></div>
+            <div class="card__info">
+              <div class="card__title">Land Sale</div>
+              <div class="card__text">1,234 properties</div>
+            </div>
+          </a>
+          <a class="card" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Tehran,home&quot;);" [routerLink]="['/land-lease']" aria-selected="false">
+            <div class="card__overlay"></div>
+            <div class="card__info">
+              <div class="card__title">Land Lease</div>
+              <div class="card__text">1,234 properties</div>
+            </div></a><a class="card" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Montreal,home&quot;);" [routerLink]="['/event-spaces']" aria-selected="false">
+            <div class="card__overlay"></div>
+            <div class="card__info">
+              <div class="card__title">Commercial</div>
+              <div class="card__text">1,234 properties</div>
+            </div></a><a class="card" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Munich,home&quot;); " [routerLink]="['/home-sale']" aria-selected="false">
+            <div class="card__overlay"></div>
+            <div class="card__info">
+              <div class="card__title">Home Sale</div>
+              <div class="card__text">1,234 properties</div>
+            </div></a><a class="card" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Maui,home&quot;);" [routerLink]="['/home-rent']" aria-selected="false">
+            <div class="card__overlay"></div>
+            <div class="card__info">
+              <div class="card__title">Home Rent</div>
+              <div class="card__text">1,234 properties</div>
+            </div></a><a class="card is-selected" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Auckland,home&quot;); " [routerLink]="['/staycations']" aria-selected="true">
+            <div class="card__overlay"></div>
+            <div class="card__info">
+              <div class="card__title">Staycations</div>
+              <div class="card__text">1,234 properties</div>
+            </div></a>
+        </div>
+      </div>  
+      <!-- <div class="row">
 
         <div class="col-lg-4 col-md-6">
           <div class="acr-category">
@@ -106,7 +147,7 @@
               <a [routerLink]="['/land-sale']" ><img src="./../../../assets/img/categories/commercial.jpg" alt="category"></a>
               <div class="acr-category-body">
                 <h5> <a [routerLink]="['/land-sale']" >Land for sale</a> </h5>
-                <!-- <span>90 Listings</span> -->
+                <span>90 Listings</span>
               </div>
             </div>
           </div>
@@ -119,7 +160,7 @@
               <a [routerLink]="['/land-lease']"><img src="./../../../assets/img/categories/residential.jpg" alt="category"></a>
               <div class="acr-category-body">
                 <h5> <a  [routerLink]="['/event-lease']">Land for lease</a> </h5>
-                <!-- <span>433 Listings</span> -->
+                <span>433 Listings</span>
               </div>
             </div>
           </div>
@@ -132,7 +173,7 @@
               <a [routerLink]="['/event-spaces']"><img src="./../../../assets/img/categories/duplex.jpg" alt="category"></a>
               <div class="acr-category-body">
                 <h5> <a [routerLink]="['/event-spaces']">Event Spaces</a> </h5>
-                <!-- <span>365 Listings</span> -->
+                <span>365 Listings</span>
               </div>
             </div>
           </div>
@@ -145,7 +186,7 @@
               <a [routerLink]="['/home-sale']"><img src="./../../../assets/img/categories/apartments.jpg" alt="category"></a>
               <div class="acr-category-body">
                 <h5> <a  [routerLink]="['/apartments']">Homes for sale</a> </h5>
-                <!-- <span>185 Listings</span> -->
+                <span>185 Listings</span>
               </div>
             </div>
           </div>
@@ -158,7 +199,7 @@
               <a [routerLink]="['/home-rent']"><img src="./../../../assets/img/categories/beachhouse.jpg" alt="category"></a>
               <div class="acr-category-body">
                 <h5> <a  [routerLink]="['/beach-house']">Homes for rent</a> </h5>
-                <!-- <span>230 Listings</span> -->
+                <span>230 Listings</span>
               </div>
             </div>
           </div>
@@ -171,13 +212,13 @@
               <a  [routerLink]="['/staycations']"><img src="./../../../assets/img/categories/villas.jpg" alt="category"></a>
               <div class="acr-category-body">
                 <h5> <a  [routerLink]="['/villas']">Staycations</a> </h5>
-                <!-- <span>221 Listings</span> -->
+                <span>221 Listings</span>
               </div>
             </div>
           </div>
         </div>
 
-      </div>
+      </div> -->
 
     </div>
   </div>

@@ -1146,12 +1146,11 @@ input[type="submit"]:disabled, button[type="submit"]:disabled {
 }
 
 .google {
-  background-color: rgba(220, 74, 56, 0.4);
-  color: #dc4a38;
+  background-color: rgb(222, 82, 70);
+  color: white;
 }
 .google:hover{
-  background-color: #dc4a38;
-  color: #fff;
+  background-color: rgba(222, 82, 70, 0.8);
 }
 
 .linkedin{
@@ -3357,11 +3356,11 @@ table img{
 
 /* 6.8. Categories */
 .acr-category{
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   transition: .3s;
 }
 .acr-category:hover{
-  transform: translateY(-5px);
+  transform: translateY(0px);
 }
 .acr-category-thumb{
   position: relative;

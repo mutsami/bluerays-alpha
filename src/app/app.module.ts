@@ -18,6 +18,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './pages/verify-email/verify-email.component'; 
 import { TimeagoModule } from 'ngx-timeago';
+import { PhoneLoginComponent } from './phone-login/phone-login.component';
  
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TimeagoModule } from 'ngx-timeago';
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent, 
+    VerifyEmailComponent,
+    PhoneLoginComponent, 
   ],
   imports: [
     BrowserModule,
