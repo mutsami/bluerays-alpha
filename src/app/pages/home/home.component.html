@@ -1,229 +1,72 @@
+
+
   <!-- Banner Start -->
-  <div class="banner banner-1 banner-3 dark-overlay bg-cover bg-center" style="background-image: url('./../../../assets/img/pexels-julia-kuzenkov-1974596.jpg')">
-    <div class="row" style="margin: 0%;">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8">
-        <div class="container">
+  <div class="banner banner-4 bg-cover bg-center">
 
-          <div class="banner-item">
-            <div class="banner-inner">
-              <div class="banner-text">
-                <h3 class="title text-white">Find Your Ideal Home Today</h3>
-                <!-- <p class="subtitle text-white">Thousands of people have their flats up for grabs. Don't miss your chance to grab your own house today.</p> -->
-                
-              <div class="acr-filter-form"  style="padding:0%"  >
-                <div class=" ">
-                  <ais-instantsearch [config]="config" >
+    <div class="container">
 
-                  <ais-search-box placeholder="Enter an address, neighbourhood, city or any property details" ></ais-search-box>
-                    <ais-hits>
-                      
-                      <ng-template let-hits="hits" let-results="results">
-                        <div style="max-height: 500px; overflow-y: auto;padding-top: 4%;" *ngIf="results?.query.length > 0">
-                          <div *ngIf="hits.length === 0">
-                            No results have been found for {{ results.query }}.
-                          </div>
-                          <div *ngFor="let hit of hits" >
-                            <div class="listing listing-list"  style="margin-bottom: 0px;">
-                              <div class="row">
-                                <div class="col-sm-5">
-
-                                  <div class="listing-thumbnail" style="width: fit-content!important; height: 130px;">
-                                    <a [routerLink]="['/listings/details', hit.objectID]"><img [src]="hit.gallery[0]?.url" onerror="this.onerror=null;this.src='https://via.placeholder.com/292x300?';"   alt="listing"></a>
-                                  </div>
-                                </div>
-                                <div class="col-sm-7">
-
-                                  <div class="listing-body">
-                                    
-                                    <h6 class="listing-title" >
-                                      <a style="margin-bottom: 0px;" [routerLink]="['/listings/details', hit.objectID]" [title]="hit.name">
-                                        <ais-highlight attribute="name" [hit]="hit"></ais-highlight>
-                                      </a>
-                                    </h6>
-                                    <!-- <p  style="margin-bottom: 0px;" class="ellipsis1"><small><ais-highlight attribute="description" [hit]="hit"></ais-highlight></small></p> -->
-                                    <span class="listing-price"  style="margin-bottom: 0px;">
-                                    {{hit.price | currency:'KES '}}</span>
-                                    <div class="acr-listing-icons" style="margin-bottom: 0px;">
-                                      <div class="acr-listing-icon" data-toggle="tooltip" title="Beds">
-                                        <i class="flaticon-bedroom"></i>
-                                        <span class="acr-listing-icon-value">2</span>
-                                      </div>
-                                      <div class="acr-listing-icon" data-toggle="tooltip" title="Bathrooms">
-                                        <i class="flaticon-bathroom"></i>
-                                        <span class="acr-listing-icon-value">1</span>
-                                      </div>
-                                      <div class="acr-listing-icon" data-toggle="tooltip" title="Square Feet">
-                                        <i class="flaticon-ruler"></i>
-                                        <span class="acr-listing-icon-value">1,780 Sqft</span>
-                                      </div>
-                                      <hr>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            
-                          </div> 
-                        </div>
-                        
-                      </ng-template>
-                    </ais-hits>
-
-                  </ais-instantsearch>
-                </div>
-                
-              </div>
-              
-              </div>
+      <div class="banner-item">
+        <div class="banner-inner">
+          <div class="banner-text">
+            <div class="acr-dots-wrapper">
+              <div class="acr-dots"></div>
             </div>
+            <h1 class="title">Find Your Ideal Home Today</h1>
+            <p class="subtitle">Thousands of people have their flats up for grabs. Don't miss your chance to grab your own house today.</p>
           </div>
-    
+          <div class="banner-newsletter">
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+              <input type="text" placeholder="Email Address" class="form-control" formControlName="email" value="">
+              <button type="submit" class="btn-custom secondary" name="button"  [disabled]="myForm.invalid">Subscribe</button>
+            </form>
+            <div *ngIf="myForm.get('email')?.invalid && (myForm.get('email')?.dirty || myForm.get('email')?.touched)">
+              <p style="letter-spacing: 1px; color: red;">              Please provide a valid email address.
+              </p>
+            </div>
+            <span>*We will be sending you two emails per month about offers and exclusive listings</span>
+          </div>
+
+          <!-- Featured Listings Start -->
+          <div class="acr-featured-listings banner-featured-slider">
+
+            <div class="container scroll-container">
+              <div class="gridscroll">
+                
+                <a *ngFor="let item of recent" class="acr-featured-listing card" style="width: 310px;">
+                  <div class="featured-listing-thumb">
+                    <a [routerLink]="['/listings/details',item.id]"><img style="height: 200px;" [src]="item.gallery[0]?.url" onerror="this.onerror=null;this.src='https://via.placeholder.com/492x400?';"   alt="listing"></a>
+                    <div class="featured-listing-controls">
+                      <span>Featured</span>
+                      <a href="#"><i class="far fa-heart"></i></a>
+                    </div>
+                  </div>
+                  <div class="featured-listing-content">
+                    <h6> {{ item.price | currency:'KES ' }} </h6>
+                    <div class="featured-listing-meta">
+                      <p>Beds {{item.beds}} , Baths {{item.bathrooms}}, {{item.size}} Sqft</p>
+                    </div>
+                    <span> <i class="fas fa-map-marker-alt"></i> {{item.name}}</span>
+                  </div>
+                </a>  
+
+              </div>
+            </div>  
+
+ 
+
+          </div>
+          <!-- Featured Listings End -->
+
         </div>
       </div>
-      <div class="col-sm-2" ></div>
+
     </div>
-    
-    
+
+    <div class="banner-bg bg-center bg-cover" style="background-image: url('https://via.placeholder.com/1920x1280')"></div>
 
   </div>
   <!-- Banner End -->
-
-  <!-- Categories Start -->
-  <div class="section section-padding">
-    <div class="container">
-      <div class="section-title-wrap section-header">
-        <h5 class="custom-primary">Neighbourhoods</h5>
-        <h2 class="title">Browse By Neighbourhoods</h2>
-        <div style="text-align:left; font-style:italic;">
-          <p>Scroll to left for more picture</p>
-        </div>
-      </div>
-
-      <div class="container scroll-container">
-        <div class="gridscroll">
-          
-          <a class="card" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Sydney,home&quot;);" [routerLink]="['/land-sale']"aria-selected="false">
-            <div class="card__overlay"></div>
-            <div class="card__info">
-              <div class="card__title">Land Sale</div>
-              <div class="card__text">1,234 properties</div>
-            </div>
-          </a>
-          <a class="card" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Tehran,home&quot;);" [routerLink]="['/land-lease']" aria-selected="false">
-            <div class="card__overlay"></div>
-            <div class="card__info">
-              <div class="card__title">Land Lease</div>
-              <div class="card__text">1,234 properties</div>
-            </div></a><a class="card" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Montreal,home&quot;);" [routerLink]="['/event-spaces']" aria-selected="false">
-            <div class="card__overlay"></div>
-            <div class="card__info">
-              <div class="card__title">Commercial</div>
-              <div class="card__text">1,234 properties</div>
-            </div></a><a class="card" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Munich,home&quot;); " [routerLink]="['/home-sale']" aria-selected="false">
-            <div class="card__overlay"></div>
-            <div class="card__info">
-              <div class="card__title">Home Sale</div>
-              <div class="card__text">1,234 properties</div>
-            </div></a><a class="card" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Maui,home&quot;);" [routerLink]="['/home-rent']" aria-selected="false">
-            <div class="card__overlay"></div>
-            <div class="card__info">
-              <div class="card__title">Home Rent</div>
-              <div class="card__text">1,234 properties</div>
-            </div></a><a class="card is-selected" style="background-image: url(&quot;https://source.unsplash.com/600x600/?Auckland,home&quot;); " [routerLink]="['/staycations']" aria-selected="true">
-            <div class="card__overlay"></div>
-            <div class="card__info">
-              <div class="card__title">Staycations</div>
-              <div class="card__text">1,234 properties</div>
-            </div></a>
-        </div>
-      </div>  
-      <!-- <div class="row">
-
-        <div class="col-lg-4 col-md-6">
-          <div class="acr-category">
-             
-            <div class="acr-category-thumb">
-              <i class="flaticon-company"></i>
-              <a [routerLink]="['/land-sale']" ><img src="./../../../assets/img/categories/commercial.jpg" alt="category"></a>
-              <div class="acr-category-body">
-                <h5> <a [routerLink]="['/land-sale']" >Land for sale</a> </h5>
-                <span>90 Listings</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div class="acr-category">
-            <div class="acr-category-thumb">
-              <i class="flaticon-house"></i>
-              <a [routerLink]="['/land-lease']"><img src="./../../../assets/img/categories/residential.jpg" alt="category"></a>
-              <div class="acr-category-body">
-                <h5> <a  [routerLink]="['/event-lease']">Land for lease</a> </h5>
-                <span>433 Listings</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div class="acr-category">
-            <div class="acr-category-thumb">
-              <i class="flaticon-garage"></i>
-              <a [routerLink]="['/event-spaces']"><img src="./../../../assets/img/categories/duplex.jpg" alt="category"></a>
-              <div class="acr-category-body">
-                <h5> <a [routerLink]="['/event-spaces']">Event Spaces</a> </h5>
-                <span>365 Listings</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div class="acr-category">
-            <div class="acr-category-thumb">
-              <i class="flaticon-apartment"></i>
-              <a [routerLink]="['/home-sale']"><img src="./../../../assets/img/categories/apartments.jpg" alt="category"></a>
-              <div class="acr-category-body">
-                <h5> <a  [routerLink]="['/apartments']">Homes for sale</a> </h5>
-                <span>185 Listings</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div class="acr-category">
-            <div class="acr-category-thumb">
-              <i class="flaticon-beach-house"></i>
-              <a [routerLink]="['/home-rent']"><img src="./../../../assets/img/categories/beachhouse.jpg" alt="category"></a>
-              <div class="acr-category-body">
-                <h5> <a  [routerLink]="['/beach-house']">Homes for rent</a> </h5>
-                <span>230 Listings</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <div class="acr-category">
-            <div class="acr-category-thumb">
-              <i class="flaticon-villa"></i>
-              <a  [routerLink]="['/staycations']"><img src="./../../../assets/img/categories/villas.jpg" alt="category"></a>
-              <div class="acr-category-body">
-                <h5> <a  [routerLink]="['/villas']">Staycations</a> </h5>
-                <span>221 Listings</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div> -->
-
-    </div>
-  </div>
-  <!-- Categories End -->
+ 
 
   <!-- Buyer/Seller Start -->
   <div class="section section-padding pt-0">
@@ -282,17 +125,29 @@
         <h5 class="custom-primary">Find Your Home</h5>
         <h2 class="title">Recent Listings</h2>
       </div>
+      <div class="container">
+        <div class="container scroll-container">
+          <div class="gridscroll">
+            
+            <a  *ngFor="let item of recent" class="acr-featured-listing card" style="width: 310px;"  [routerLink]="['/listings/details',item.id]" >
+              <div class="featured-listing-thumb">
+                <a [routerLink]="['/listings/details',item.id]"><img style="height: 200px;" [src]="item.gallery[0]?.url" onerror="this.onerror=null;this.src='https://via.placeholder.com/492x400?';"   alt="listing"></a>
+                <div class="featured-listing-controls">
+                  <span>Recent</span>
+                  <a href="#"><i class="far fa-heart"></i></a>
+                </div>
+              </div>
+              <div class="featured-listing-content">
+                <h6>{{item.price  | currency:'KES '}}</h6>
+                <div class="featured-listing-meta">
+                  <p>Beds {{item.beds}} , Baths {{item.bathrooms}}, {{item.size}} Sqft</p>
+                </div>
+                <span> <i class="fas fa-map-marker-alt"></i> {{item.name}}</span>
+              </div>
+            </a>  
 
-      <div class="row">
-        <div class="col-lg-8">
-
-          <app-recent-listings></app-recent-listings> 
-        </div>
-        <div class="col-lg-4">
-
-          <app-recent-listings-grid></app-recent-listings-grid>
-
-        </div>
+          </div>
+        </div>  
       </div>
     </div>
   </div>

@@ -218,7 +218,7 @@ export class AuthService {
   }
 
   getRecentListings(){
-    this.listingCollection = this.afs.collection('listings', ref => ref.orderBy('uploaded','desc').limit(5));
+    this.listingCollection = this.afs.collection('listings', ref => ref.orderBy('uploaded','asc').limit(5));
     return this.listingCollection
       .snapshotChanges().pipe(
         map(actions => {
@@ -415,6 +415,10 @@ export class AuthService {
 
   createBlog(blog: Blog){
     return this.afs.collection('blogs').add(blog)
+  }
+
+  createMailList(email: any){
+    return this.afs.collection('mailList').add(email)
   }
 
 deleteBlog(blog_id: string){

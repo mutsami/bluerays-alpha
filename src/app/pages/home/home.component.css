@@ -1,8 +1,7 @@
 
   .card-wrap {
     width: 100%;
-    margin: hidden;
-    height: 400px; 
+    margin: hidden; 
    /* display: flex;
     align-items: center;
     overflow-x: scroll;
@@ -19,7 +18,7 @@
 .card {
     display: inline-block;
     width: 100%;
-    max-width: 190px;
+    max-width: 100%;
     min-width: 190px;
     border-radius: 0.6rem;
     /* box-shadow: 0 20px 40px rgba(0, 0, 0, .1), 0 5px 15px rgba(0, 0, 0, .04); */

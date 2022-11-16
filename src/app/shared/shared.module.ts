@@ -25,6 +25,6 @@ import { TimeagoModule } from 'ngx-timeago';
     
   ],
   exports: [Nav2Component,RecentListingsSmComponent,RecentListingsComponent
-    ,NgAisModule,MortgageComponent,RecentListingsGridComponent,SanitizeHtmlPipe,TimeagoModule]
+    ,NgAisModule,MortgageComponent,RecentListingsGridComponent,SanitizeHtmlPipe,TimeagoModule,ReactiveFormsModule]
 })
 export class SharedModule { }

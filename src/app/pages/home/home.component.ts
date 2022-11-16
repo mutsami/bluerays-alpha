@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import algoliasearch from 'algoliasearch/lite'; 
 import Flickity from 'flickity';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  myForm: FormGroup;
+
   recent:any;
   config = {
     indexName: 'listings',
@@ -15,6 +18,7 @@ export class HomeComponent implements OnInit {
   }
   mailText: string;
   uploaderPhone: any;
+  
   constructor(private auth:AuthService) { 
     this.auth.getRecentListings().subscribe(e=>{
       this.recent = e;
@@ -22,6 +26,19 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() { 
+    this.myForm = new FormGroup({ 
+      email: new FormControl('',[Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
+    });
+  }
+
+  onSubmit(form: FormGroup) { 
+    var obj = {
+      email: form.value.email
+    };  
+    this.auth.createMailList(obj).then(e=>{
+      console.log('Result',e)
+    })
+    
   }
 
   getUploaderEmail(id:any){   
@@ -38,4 +55,7 @@ export class HomeComponent implements OnInit {
       window.location.href = this.mailText;
     }) 
   }
+
+
+
 }
